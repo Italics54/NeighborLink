@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('NeighborLink');
+  constructor(private router: Router) {}
+
+  openResources(event: Event) {
+    event.preventDefault(); 
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['/resources'])
+    );
+    window.open(url, '_blank');
+  }
 }
