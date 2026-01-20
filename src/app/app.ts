@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+    standalone: true,
+  styleUrls: ['./app.css'],
+  imports: [RouterOutlet]
 })
 export class App {
   constructor(private router: Router) {}

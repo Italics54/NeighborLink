@@ -1,0 +1,153 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo img {
+  height: 50px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.main-content {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 300px;
+  padding: 10px;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.resources {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.resource-item {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.daily-events, .community-board {
+  margin-top: 20px;
+}
+
+.daily-events ul, .community-board ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.directory-page {
+  display: flex;
+  margin-top: 20px;
+}
+
+.filters {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  flex: 2;
+  padding: 20px;
+  background-color: #fff;
+  margin-left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map-placeholder {
+  background-color: #dcdcdc;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.submit-resource form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submit-resource input {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.submit-resource button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-assistant .chat-box {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-assistant textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+}
+
+.chat-assistant .response {
+  margin-top: 20px;
+}
