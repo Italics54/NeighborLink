@@ -87,6 +87,89 @@
           }
         }
       }
+    },
+    "stories": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/stories",
+      "sourceRoot": "projects/stories/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/stories/src/main.ts",
+            "tsConfig": "projects/stories/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/stories/public"
+              }
+            ],
+            "styles": [
+              "projects/stories/src/styles.css"
+            ],
+            "server": "projects/stories/src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "projects/stories/src/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "stories:build:production"
+            },
+            "development": {
+              "buildTarget": "stories:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/stories/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/stories/public"
+              }
+            ],
+            "styles": [
+              "projects/stories/src/styles.css"
+            ]
+          }
+        }
+      }
     }
   }
 }

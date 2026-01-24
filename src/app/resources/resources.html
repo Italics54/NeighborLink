@@ -1,82 +1,101 @@
-<div class="container">
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Logo">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Stories/Blog</a></li>
-        <li><a href="#">Calendar</a></li>
-        <li><a href="#">Submit Resource</a></li>
-      </ul>
-    </nav>
-  </header>
+<section class="resources-hero">
+  <h1>Resource Directory</h1>
 
-  <section class="main-content">
-    <h2>What do you need help with today?</h2>
-    <div class="search-box">
-      <input type="text" placeholder="Search Resources">
-      <button>Search</button>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      placeholder="Search resources by name, service, or keyword..."
+    />
+  </div>
+</section>
+
+<section class="resources-layout">
+  <aside class="filters">
+    <h3>Filters</h3>
+
+    <div class="filter-group">
+      <span class="filter-title">Categories</span>
+
+      <label>
+        <input type="radio" name="category" checked />
+        🍴 Food & Meals <span>24</span>
+      </label>
+
+      <label>
+        <input type="radio" name="category" />
+        🏠 Housing & Shelter <span>18</span>
+      </label>
+
+      <label>
+        <input type="radio" name="category" />
+        💼 Employment <span>12</span>
+      </label>
+
+      <label>
+        <input type="radio" name="category" />
+        📄 Education <span>15</span>
+      </label>
+
+      <label>
+        <input type="radio" name="category" />
+        💗 Healthcare <span>21</span>
+      </label>
+
+      <label>
+        <input type="radio" name="category" />
+        👨‍👩‍👧 Family Services <span>9</span>
+      </label>
+    </div>
+  </aside>
+
+  <div class="resources-content">
+    <div class="map-box">
+      <strong>map</strong>
     </div>
 
-    <div class="resources">
-      <div class="resource-item">Resource 1</div>
-      <div class="resource-item">Resource 2</div>
-      <div class="resource-item">Resource 3</div>
-    </div>
+    <p class="results-count">Showing 2 resources</p>
 
-    <div class="daily-events">
-      <h3>What's Happening Today</h3>
-      <ul>
-        <li>Daily Event 1</li>
-        <li>Daily Event 2</li>
-        <li>Daily Event 3</li>
-      </ul>
-    </div>
+    <div class="resource-grid"> 
+      <div class="resource-card">
+        <div class="card-icon">🍴</div>
+        <h3>Community Food Pantry</h3>
+        <p>
+          Fresh produce and groceries available every Tuesday and Thursday.
+          No registration required.
+        </p>
 
-    <div class="community-board">
-      <h3>Community Bulletin Board</h3>
-      <ul>
-        <li>Latest Post 1</li>
-        <li>Latest Post 2</li>
-        <li>Latest Post 3</li>
-      </ul>
-    </div>
-  </section>
+        <ul>
+          <li>📍 123 Main Street, Downtown</li>
+          <li>🕘 Tue & Thu: 9am -- 4pm</li>
+          <li>📞 (555) 123-4567</li>
+        </ul>
+        <div class="tags">
+          <span>Walk-in</span>
+          <span>Family-friendly</span>
+        </div>
+        <button class="details-btn">View Details →</button>
+      </div>
+      <div class="resource-card">
+        <div class="card-icon">🏠</div>
+        <h3>Hope Housing Assistance</h3>
+        <p>
+          Emergency housing support and rental assistance programs for families
+          in need.
+        </p>
+        <ul>
+          <li>456 Oak Avenue, Midtown</li>
+          <li>Mon – Fri: 8am – 5pm</li>
+          <li>(555) 234-5678</li>
+        </ul>
 
-  <section class="directory-page">
-    <div class="filters">
-      <h3>Filters</h3>
-      <input type="text" placeholder="Filter by topic">
-    </div>
-    <div class="map">
-      <div class="map-placeholder">
-        <!-- Placeholder for map -->
-        <span>Map Placeholder</span>
+        <div class="tags">
+          <span>Appointment required</span>
+          <span>Documents needed</span>
+        </div>
+
+        <button class="details-btn">View Details →</button>
       </div>
     </div>
-  </section>
-
-  <section class="submit-resource">
-    <h3>Submit a Resource</h3>
-    <form>
-      <input type="text" placeholder="Resource Title">
-      <input type="text" placeholder="Resource Description">
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-
-  <section class="chat-assistant">
-    <h3>Chat-based assistant</h3>
-    <div class="chat-box">
-      <div class="user-query">
-        <textarea placeholder="Ask a question..."></textarea>
-      </div>
-      <div class="response">
-        <p>Response will appear here.</p>
-      </div>
-    </div>
-  </section>
-</div>
+  </div>
+</section>
