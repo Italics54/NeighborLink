@@ -35,6 +35,6 @@ export class Calendar {
       date: 'January 27, 2067',
       time: '3:00 PM',
       category: 'Family'
-    }
+    } 
   ];
 }

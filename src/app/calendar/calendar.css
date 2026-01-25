@@ -2,18 +2,24 @@
   padding: 90px 20px;
   max-width: 1200px;
   margin: auto;
+  animation: fadeUp 0.8s ease;
 }
+
 .calendar-header {
   text-align: center;
   margin-bottom: 60px;
+  animation: fadeUp 0.8s ease both;
 }
+
 .calendar-header h1 {
   font-size: 48px;
   font-weight: 800;
 }
+
 .calendar-header h1 span {
   color: #8b4de8;
 }
+
 .calendar-header p {
   max-width: 700px;
   margin: 16px auto 0;
@@ -29,7 +35,15 @@
   border-radius: 22px;
   padding: 32px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  animation: fadeUp 0.8s ease both;
+  transition: all 0.35s ease;
 }
+
+.calendar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+}
+
 .calendar-title {
   font-size: 20px;
   font-weight: 700;
@@ -49,6 +63,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 8px;
 }
+
 .days span {
   height: 46px;
   border-radius: 12px;
@@ -57,25 +72,45 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
+
+.days span:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
 .days span.muted {
   opacity: 0.35;
+  cursor: default;
 }
+
+.days span.muted:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .days span.event-day {
   border: 2px solid #8b4de8;
   font-weight: 700;
 }
+
 .days span.selected {
   background: #e9defb;
   border: 2px solid #8b4de8;
   font-weight: 700;
+  animation: pulse 1.8s ease infinite;
 }
 .upcoming-card {
   background: #ffffff;
   border-radius: 22px;
   padding: 28px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.9s ease both;
+  animation-delay: 0.1s;
 }
+
 .upcoming-title {
   font-size: 20px;
   font-weight: 800;
@@ -94,7 +129,19 @@
   border-radius: 16px;
   background: #faf8ff;
   animation: slideIn 0.6s ease both;
+  transition: all 0.3s ease;
 }
+
+.upcoming-event:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+.upcoming-event:nth-child(1) { animation-delay: 0.05s; }
+.upcoming-event:nth-child(2) { animation-delay: 0.1s; }
+.upcoming-event:nth-child(3) { animation-delay: 0.15s; }
+.upcoming-event:nth-child(4) { animation-delay: 0.2s; }
+
 .event-date {
   width: 52px;
   min-width: 52px;
@@ -103,7 +150,13 @@
   text-align: center;
   padding: 6px 0;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
 }
+
+.upcoming-event:hover .event-date {
+  transform: scale(1.08) rotate(-2deg);
+}
+
 .event-date .month {
   font-size: 11px;
   font-weight: 700;
@@ -111,6 +164,7 @@
   display: block;
   text-transform: uppercase;
 }
+
 .event-date .day {
   font-size: 20px;
   font-weight: 800;
@@ -119,6 +173,7 @@
 .event-content {
   flex: 1;
 }
+
 .event-category {
   font-size: 11px;
   font-weight: 700;
@@ -126,25 +181,33 @@
   display: block;
   margin-bottom: 4px;
 }
+
 .event-title {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 6px;
 }
+
 .event-time {
   font-size: 13px;
   color: #777;
 }
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 @media (max-width: 900px) {
   .calendar-layout {
     grid-template-columns: 1fr;
