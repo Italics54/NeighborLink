@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { Header } from './header/header';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  standalone: true,
+  imports: [RouterOutlet, Header],
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  `,
 })
-export class App {
-  constructor(private router: Router) {}
-
-  openResources(event: Event) {
-    event.preventDefault(); 
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree(['/resources'])
-    );
-    window.open(url, '_blank');
-  }
-}
+export class App {}
