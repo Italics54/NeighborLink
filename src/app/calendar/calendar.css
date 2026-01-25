@@ -213,3 +213,36 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+.bottom-modal {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.modal-sheet {
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  padding: 16px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+  animation: slideUp 0.3s ease;
+}
+
+.modal-event {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.close-btn {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}

@@ -2,8 +2,8 @@
   <div class="calendar-header">
     <h1>Community <span>Calendar</span></h1>
     <p>
-     Find events, connect with neighbors,
-    and build lasting memories together.
+      Find events, connect with neighbors,
+      and build lasting memories together.
     </p>
   </div>
   <div class="calendar-layout">
@@ -28,32 +28,47 @@
         <span>18</span><span>19</span><span>20</span><span>21</span>
         <span>22</span><span>23</span><span>24</span>
 
-        <span class="event-day">25</span>
+        <span (click)="openDay(25)" class="event-day">25</span>
         <span>26</span><span>27</span>
         <span>28</span><span class="selected">29</span>
         <span>30</span><span>31</span>
       </div>
     </div>
-    <div class="upcoming-card">
-  <h3 class="upcoming-title">Upcoming Events</h3>
-  <div class="upcoming-events">
-    <div
-      class="upcoming-event"
-      *ngFor="let event of upcomingEvents; let i = index"
-      [style.animationDelay]="i * 0.12 + 's'"
-    >
-      <div class="event-date">
-        <span class="month">{{ getMonth(event.date) }}</span>
-        <span class="day">{{ getDay(event.date) }}</span>
-      </div>
-      <div class="event-content">
-        <span class="event-category">{{ event.category }}</span>
-        <h4 class="event-title">{{ event.title }}</h4>
-        <p class="event-time">{{ event.time }}</p>
-      </div>
+    <div class="bottom-modal" *ngIf="selectedDay">
+      <div class="modal-sheet">
+        <button class="close-btn" (click)="closeModal()">✕</button>
+        <h3>Events for January {{ selectedDay }}</h3>
 
+        <div>
+          <div class="modal-event" *ngFor="let event of selectedEvents">
+            <h4>{{ event.title }}</h4>
+            <p>{{ event.time }}</p>
+            <p>{{ event.category }}</p>
+          </div>
+        </div>
+
+        <ng-template #none>
+          <p>No events this day</p>
+        </ng-template>
+      </div>
     </div>
-  </div>
-</div>
+    <div class="upcoming-card">
+      <h3 class="upcoming-title">Upcoming Events</h3>
+      <div class="upcoming-events">
+        <div class="upcoming-event" *ngFor="let event of upcomingEvents; let i = index"
+          [style.animationDelay]="i * 0.12 + 's'">
+          <div class="event-date">
+            <span class="month">{{ getMonth(event.date) }}</span>
+            <span class="day">{{ getDay(event.date) }}</span>
+          </div>
+          <div class="event-content">
+            <span class="event-category">{{ event.category }}</span>
+            <h4 class="event-title">{{ event.title }}</h4>
+            <p class="event-time">{{ event.time }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </section>
