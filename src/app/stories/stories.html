@@ -1,1 +1,32 @@
-<p>stories works!</p>
+<section class="resources-hero">
+  <h1>Stories & Community Posts</h1>
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search for topics (e.g. Wellness, Sustainability, Education)..."
+    />
+  </div>
+</section>
+
+<div class="blog-container">
+  <p class="results-count" style="margin-bottom: 20px;">
+    Showing {{ filteredPosts().length }} results
+  </p>
+
+  <div class="resource-grid" id="blogList">
+    <article class="resource-card" *ngFor="let post of filteredPosts()">
+      <div class="tags">
+        <span class="category">{{ post.category }}</span>
+      </div>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.description }}</p>
+      <button class="details-btn">Read Story</button>
+    </article>
+  </div>
+
+  <div class="map-box" *ngIf="filteredPosts().length === 0">
+    No stories found matching "{{ searchTerm }}"
+    <span>Try searching for a different topic.</span>
+  </div>
+</div>
