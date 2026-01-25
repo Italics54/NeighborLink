@@ -1,1 +1,59 @@
-<p>calendar works!</p>
+<section class="calendar-page">
+  <div class="calendar-header">
+    <h1>Community <span>Calendar</span></h1>
+    <p>
+     Find events, connect with neighbors,
+    and build lasting memories together.
+    </p>
+  </div>
+  <div class="calendar-layout">
+    <div class="calendar-card">
+      <div class="calendar-title">January 2026</div>
+
+      <div class="weekdays">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="days">
+        <span class="muted">28</span>
+        <span class="muted">29</span>
+        <span class="muted">30</span>
+        <span class="muted">31</span>
+
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span><span>7</span>
+        <span>8</span><span>9</span><span>10</span>
+        <span>11</span><span>12</span><span>13</span><span>14</span>
+        <span>15</span><span>16</span><span>17</span>
+        <span>18</span><span>19</span><span>20</span><span>21</span>
+        <span>22</span><span>23</span><span>24</span>
+
+        <span class="event-day">25</span>
+        <span>26</span><span>27</span>
+        <span>28</span><span class="selected">29</span>
+        <span>30</span><span>31</span>
+      </div>
+    </div>
+    <div class="upcoming-card">
+  <h3 class="upcoming-title">Upcoming Events</h3>
+  <div class="upcoming-events">
+    <div
+      class="upcoming-event"
+      *ngFor="let event of upcomingEvents; let i = index"
+      [style.animationDelay]="i * 0.12 + 's'"
+    >
+      <div class="event-date">
+        <span class="month">{{ getMonth(event.date) }}</span>
+        <span class="day">{{ getDay(event.date) }}</span>
+      </div>
+      <div class="event-content">
+        <span class="event-category">{{ event.category }}</span>
+        <h4 class="event-title">{{ event.title }}</h4>
+        <p class="event-time">{{ event.time }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </div>
+</section>
