@@ -1,66 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Submit a Resource</title>
-  <link rel="stylesheet" href="submit.css" />
-</head>
-<body>
+<main class="submit-hero" [class.locked]="submitted">
 
-  <main class="submit-hero">
+  <div class="pill">help our community thrive</div>
 
-    <div class="pill">help our community thrive</div>
+  <h1>Submit a Community Resource</h1>
 
-    <h1>Submit a Community Resource</h1>
+  <p class="subtitle">
+    Know a place that supports our community? Share it with us.
+    Submissions are reviewed and considered for future features.
+  </p>
+  <form
+    class="resource-form tween-form"
+    (ngSubmit)="onSubmit()"
+    [class.hide]="submitted"
+  >
 
-    <p class="subtitle">
-      Know a place that supports our community? Share it with us.
-      Submissions are reviewed and considered for future features.
+    <div class="form-group">
+      <label>Resource Name</label>
+      <input type="text" placeholder="Organization or program name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <input type="text" placeholder="Food, housing, health, education..." required>
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" placeholder="City or neighborhood served">
+    </div>
+
+    <div class="form-group">
+      <label>Website or Contact Info</label>
+      <input type="text" placeholder="Website, phone number, or email">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea rows="4" placeholder="What does this resource offer? Who is it for?"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Why should it be featured? <span>(optional)</span></label>
+      <textarea rows="3" placeholder="Tell us why this resource matters"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Submit Resource
+    </button>
+
+    <p class="disclaimer">
+      Submitting a resource does not guarantee it will be published.
     </p>
 
-    <form class="resource-form tween-form">
+  </form>
+  <div class="success-overlay" [class.show]="submitted">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
 
-      <div class="form-group">
-        <label>Resource Name</label>
-        <input type="text" placeholder="Organization or program name">
-      </div>
+      <h2>Thanks for submitting!</h2>
 
-      <div class="form-group">
-        <label>Category</label>
-        <input type="text" placeholder="Food, housing, health, education...">
-      </div>
-
-      <div class="form-group">
-        <label>Location</label>
-        <input type="text" placeholder="City or neighborhood served">
-      </div>
-
-      <div class="form-group">
-        <label>Website or Contact Info</label>
-        <input type="text" placeholder="Website, phone number, or email">
-      </div>
-
-      <div class="form-group">
-        <label>Description</label>
-        <textarea rows="4" placeholder="What does this resource offer? Who is it for?"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Why should it be featured? <span>(optional)</span></label>
-        <textarea rows="3" placeholder="Tell us why this resource matters"></textarea>
-      </div>
-
-      <button type="submit" class="submit-btn">
-        Submit Resource →
-      </button>
-
-      <p class="disclaimer">
-        Submitting a resource does not guarantee it will be published.
+      <p>
+Thanks for submitting! Our team will review the resource and get back to you
       </p>
 
-    </form>
-  </main>
+      <button class="success-btn" (click)="resetForm()">
+        Submit another
+      </button>
+    </div>
+  </div>
 
-</body>
-</html>
+</main>
