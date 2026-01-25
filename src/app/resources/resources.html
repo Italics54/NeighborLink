@@ -1,13 +1,5 @@
 <section class="resources-hero">
   <h1>Resource Directory</h1>
-
-  <div class="search-box">
-    <span class="search-icon">🔍</span>
-    <input
-      type="text"
-      placeholder="Search resources by name, service, or keyword..."
-    />
-  </div>
 </section>
 
 <section class="resources-layout">
@@ -18,33 +10,28 @@
       <span class="filter-title">Categories</span>
 
       <label>
-        <input type="radio" name="category" checked />
-        🍴 Food & Meals <span>24</span>
+        <input type="radio" name="category" [(ngModel)]="category" value="food" />
+        Food & Meals <span>{{ amountOfCategory('food') }}</span>
       </label>
 
       <label>
-        <input type="radio" name="category" />
-        🏠 Housing & Shelter <span>18</span>
+        <input type="radio" name="category" [(ngModel)]="category" value="store" />
+        🏠 Markets <span>{{ amountOfCategory('store') }}</span>
       </label>
 
       <label>
-        <input type="radio" name="category" />
-        💼 Employment <span>12</span>
+        <input type="radio" name="category" [(ngModel)]="category" value="parks" />
+        💼 Parks and Rec Centers <span>{{ amountOfCategory('parks') }}</span>
       </label>
 
       <label>
-        <input type="radio" name="category" />
-        📄 Education <span>15</span>
+        <input type="radio" name="category" [(ngModel)]="category" value="education" />
+        📄 Education <span>{{ amountOfCategory('education') }}</span>
       </label>
 
       <label>
-        <input type="radio" name="category" />
-        💗 Healthcare <span>21</span>
-      </label>
-
-      <label>
-        <input type="radio" name="category" />
-        👨‍👩‍👧 Family Services <span>9</span>
+        <input type="radio" name="category" [(ngModel)]="category" value="health" />
+        💗 Healthcare <span>{{ amountOfCategory('health') }}</span>
       </label>
     </div>
   </aside>
@@ -54,48 +41,31 @@
       <strong>map</strong>
     </div>
 
-    <p class="results-count">Showing 2 resources</p>
+    <p class="results-count"> Showing {{ filteredResources().length }} resources </p>
 
-    <div class="resource-grid"> 
-      <div class="resource-card">
+    <div class="resource-grid">
+      @for (card of resourcesCards; track card) {
+      @if (!category || card.category === category) {
+      <article class="resource-card">
         <div class="card-icon"></div>
-        <h3>Community Food Pantry</h3>
-        <p>
-          Fresh produce and groceries available every Tuesday and Thursday.
-          No registration required.
-        </p>
-
+        <h3>{{card.title}}</h3>
+        <p>{{card.description}}</p>
         <ul>
-          <li>📍 123 Main Street, Downtown</li>
-          <li>🕘 Tue & Thu: 9am -- 4pm</li>
-          <li>📞 (555) 123-4567</li>
+          <li>{{card.address}}</li>
+          <li>{{card.hours}}</li>
+          <li>{{card.phone}}</li>
         </ul>
-        <div class="tags">
-          <span>Walk-in</span>
-          <span>Family-friendly</span>
-        </div>
+        <div class="tags"><span>{{card.tags}}</span></div>
         <button class="details-btn">View Details →</button>
-      </div>
-      <div class="resource-card">
-        <div class="card-icon"></div>
-        <h3>Hope Housing Assistance</h3>
-        <p>
-          Emergency housing support and rental assistance programs for families
-          in need.
-        </p>
-        <ul>
-          <li>456 Oak Avenue, Midtown</li>
-          <li>Mon – Fri: 8am – 5pm</li>
-          <li>(555) 234-5678</li>
-        </ul>
-
-        <div class="tags">
-          <span>Appointment required</span>
-          <span>Documents needed</span>
-        </div>
-
-        <button class="details-btn">View Details →</button>
-      </div>
+      </article>
+      }}
     </div>
+
+    <div class="result-box" *ngIf="filteredResources().length === 0">
+      No stories found matching "{{ category }}"
+      <span>Try searching for a different topic.</span>
+    </div>
+
   </div>
+
 </section>

@@ -154,7 +154,7 @@ body {
 
 .resource-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 .resource-card:nth-child(1) { animation-delay: 0.05s; }
 .resource-card:nth-child(2) { animation-delay: 0.1s; }
@@ -246,4 +246,19 @@ body {
   .resources-layout {
     grid-template-columns: 1fr;
   }
+}
+
+.result-box {
+  text-align: center;
+  padding: 50px 20px;
+  background: white;
+  border-radius: 16px;
+  color: #6b7280;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.result-box span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
 }
