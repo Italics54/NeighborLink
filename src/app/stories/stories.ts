@@ -76,4 +76,11 @@ export class Stories {
     );
   }
 
+  viewStory(id: number): void {
+    const storyNumber = String.fromCharCode(64 + id);
+
+    console.log(storyNumber, "A new story has been revealed");
+    this.router.navigate([`/blog-${storyNumber}`]);
+  }
+
 }
