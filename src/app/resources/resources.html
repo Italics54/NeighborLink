@@ -48,7 +48,7 @@
     <div class="resource-grid">
       @for (card of resourcesCards; track card) {
       @if (!category || card.category === category) {
-      <article class="resource-card">
+      <article class="resource-card" (click)="openModal(card)">
         <div class="card-icon"></div>
         <h3>{{card.title}}</h3>
         <p>{{card.description}}</p>
@@ -58,9 +58,45 @@
           <li>{{card.phone}}</li>
         </ul>
         <div class="tags"><span>{{card.tags}}</span></div>
-        <button class="details-btn">View Details →</button>
+        <button class="details-btn" (click)="openModal(card)">View Details →</button>
       </article>
-      }}
+      }
+      }
+
+      @if (selectedCard) {
+      <div class="modal-backdrop" (click)="closeModal()">
+        <div class="profile-modal" (click)="$event.stopPropagation()">
+
+          <div class="profile-image">
+            <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" />
+          </div>
+
+          <div class="profile-content">
+            <button class="close-btn" (click)="closeModal()">✕</button>
+
+            <h2>{{ selectedCard.title }}</h2>
+            <h4 class="subtitle">{{ selectedCard.subtitle }}</h4>
+
+            <div class="highlight">
+              {{ selectedCard.specialty }}
+            </div>
+
+            <p class="description">
+              {{ selectedCard.fullDescription }}
+            </p>
+
+            <ul class="details">
+              <li>📍 {{ selectedCard.address }}</li>
+              <li>🕒 {{ selectedCard.hours }}</li>
+              <li>📞 {{ selectedCard.phone }}</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      }
+
+
     </div>
 
     <div class="result-box" *ngIf="filteredResources().length === 0">

@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class Resources {
 
   category: string | null = null;
+  selectedCard: any = null;
+
 
 
   resourcesCards: ResourceCard[] = [
@@ -127,5 +129,13 @@ export class Resources {
 
   clearFilters() {
     this.category = null;
+  }
+
+  openModal(card: any) {
+    this.selectedCard = card;
+  }
+
+  closeModal() {
+    this.selectedCard = null;
   }
 }
