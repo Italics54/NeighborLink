@@ -26,18 +26,16 @@ export class SignInComponent {
   get password() { return this.signInForm.get('password')!; }
   get community() { return this.signInForm.get('community')!; }
 
-
-
   onSubmit(): void {
     if (this.signInForm.valid) {
       this.showSuccess = true;
-      setTimeout(() => this.router.navigate(['/dashboard']), 1000);
     } else {
       this.signInForm.markAllAsTouched();
     }
   }
 
-  goToDashboard(): void {
-    this.router.navigate(['/dashboard']);
+  goToResources(): void {
+    this.showSuccess = false;
+    this.router.navigate(['/resources']);
   }
 }
