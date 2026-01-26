@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './sign-in.html',
   styleUrls: ['./sign-in.css']
 })
@@ -15,9 +18,8 @@ export class SignInComponent {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      community: ['', [Validators.required]] // <-- New field
+      community: ['', Validators.required]
     });
-
   }
 
   get email() { return this.signInForm.get('email')!; }
@@ -25,16 +27,17 @@ export class SignInComponent {
   get community() { return this.signInForm.get('community')!; }
 
 
-  onSubmit() {
+
+  onSubmit(): void {
     if (this.signInForm.valid) {
       this.showSuccess = true;
-
-      // Navigate to dashboard after 1 second
       setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+    } else {
+      this.signInForm.markAllAsTouched();
     }
   }
 
-  goToDashboard() {
+  goToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
 }
