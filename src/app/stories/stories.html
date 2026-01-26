@@ -21,7 +21,7 @@
       </div>
       <h3>{{ post.title }}</h3>
       <p>{{ post.description }}</p>
-      <button class="details-btn">Read Story</button>
+      <button class="details-btn" (click)="goToStory(post.id)">Read Story</button>
     </article>
   </div>
 
