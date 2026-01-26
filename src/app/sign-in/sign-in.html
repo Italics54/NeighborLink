@@ -1,0 +1,53 @@
+<section class="submit-hero">
+    <div class="pill">Welcome Back</div>
+    <h1>Sign In</h1>
+    <div class="subtitle">
+        Access your account to continue. Enter your credentials below.
+    </div>
+
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="resource-form">
+        <div class="form-group">
+            <label for="email">Email <span>(required)</span></label>
+            <input type="email" id="email" formControlName="email" placeholder="you@example.com" required>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                <small *ngIf="email.errors?.['required']">Email is required.</small>
+                <small *ngIf="email.errors?.['email']">Enter a valid email.</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password <span>(required)</span></label>
+            <input type="password" id="password" formControlName="password" placeholder="Enter your password" required>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+                <small *ngIf="password.errors?.['required']">Password is required.</small>
+                <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="community">Community <span>(required)</span></label>
+            <input type="text" id="community" formControlName="community" placeholder="Enter your community name"
+                required>
+            <div *ngIf="community.invalid && (community.dirty || community.touched)" class="error">
+                <small *ngIf="community.errors?.['required']">Community is required.</small>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="signInForm.invalid">Sign In</button>
+
+        <div class="disclaimer">
+            Forgot your password? <a routerLink="/forgot-password">Reset it here</a>
+        </div>
+    </form>
+
+</section>
+
+<!-- Success overlay
+<div class="success-overlay" [class.show]="showSuccess">
+    <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Welcome Back!</h2>
+        <p>You have successfully signed in.</p>
+        <button class="success-btn" (click)="goToDashboard()">Continue</button>
+    </div>
+</div> maybe up to you nour-->
