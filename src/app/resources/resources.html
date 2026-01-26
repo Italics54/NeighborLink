@@ -1,109 +1,143 @@
-<section class="resources-hero">
-  <h1>Resource Directory</h1>
-</section>
+<div class="page-shell" [class.is-blurred]="selectedCard">
 
-<section class="resources-layout">
-  <aside class="filters">
-    <h3>Filters
-      <button class="clear-btn" (click)="clearFilters()" title="Clear filters">✕</button>
-    </h3>
+  <section class="resources-hero">
+    <h1>Resource Directory</h1>
+    <p class="hero-subtitle">Find nearby support services, programs, and community resources</p>
+  </section>
 
-    <div class="filter-group">
-      <span class="filter-title">Categories</span>
+  <section class="resources-layout">
 
-      <label>
-        <input type="radio" name="category" [(ngModel)]="category" value="food" />
-        Food & Meals <span>{{ amountOfCategory('food') }}</span>
-      </label>
-
-      <label>
-        <input type="radio" name="category" [(ngModel)]="category" value="store" />
-        🏠 Markets <span>{{ amountOfCategory('store') }}</span>
-      </label>
-
-      <label>
-        <input type="radio" name="category" [(ngModel)]="category" value="parks" />
-        💼 Parks and Rec Centers <span>{{ amountOfCategory('parks') }}</span>
-      </label>
-
-      <label>
-        <input type="radio" name="category" [(ngModel)]="category" value="education" />
-        📄 Education <span>{{ amountOfCategory('education') }}</span>
-      </label>
-
-      <label>
-        <input type="radio" name="category" [(ngModel)]="category" value="health" />
-        💗 Healthcare <span>{{ amountOfCategory('health') }}</span>
-      </label>
-    </div>
-  </aside>
-
-  <div class="resources-content">
-    <div class="map-box">
-      <strong>map</strong>
-    </div>
-
-    <p class="results-count"> Showing {{ filteredResources().length }} resources </p>
-
-    <div class="resource-grid">
-      @for (card of resourcesCards; track card) {
-      @if (!category || card.category === category) {
-      <article class="resource-card" (click)="openModal(card)">
-        <div class="card-icon"></div>
-        <h3>{{card.title}}</h3>
-        <p>{{card.description}}</p>
-        <ul>
-          <li>{{card.address}}</li>
-          <li>{{card.hours}}</li>
-          <li>{{card.phone}}</li>
-        </ul>
-        <div class="tags"><span>{{card.tags}}</span></div>
-        <button class="details-btn" (click)="openModal(card)">View Details →</button>
-      </article>
-      }
-      }
-
-      @if (selectedCard) {
-      <div class="modal-backdrop" (click)="closeModal()">
-        <div class="profile-modal" (click)="$event.stopPropagation()">
-
-          <div class="profile-image">
-            <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" />
-          </div>
-
-          <div class="profile-content">
-            <button class="close-btn" (click)="closeModal()">✕</button>
-
-            <h2>{{ selectedCard.title }}</h2>
-            <h4 class="subtitle">{{ selectedCard.subtitle }}</h4>
-
-            <div class="highlight">
-              {{ selectedCard.specialty }}
-            </div>
-
-            <p class="description">
-              {{ selectedCard.fullDescription }}
-            </p>
-
-            <ul class="details">
-              <li>📍 {{ selectedCard.address }}</li>
-              <li>🕒 {{ selectedCard.hours }}</li>
-              <li>📞 {{ selectedCard.phone }}</li>
-            </ul>
-          </div>
-
-        </div>
+    <aside class="filters">
+      <div class="filters-header">
+        <h3>Filters</h3>
+        <button class="clear-btn" (click)="clearFilters()" title="Clear filters">✕</button>
       </div>
-      }
 
+      <div class="filter-group">
+        <span class="filter-title">Categories</span>
+
+        <label>
+          <input type="radio" name="category" [(ngModel)]="category" value="food" />
+          Food & Meals <span class="count-pill">{{ amountOfCategory('food') }}</span>
+        </label>
+
+        <label>
+          <input type="radio" name="category" [(ngModel)]="category" value="store" />
+          🏠 Markets <span class="count-pill">{{ amountOfCategory('store') }}</span>
+        </label>
+
+        <label>
+          <input type="radio" name="category" [(ngModel)]="category" value="parks" />
+          💼 Parks & Rec-Centers<span class="count-pill">{{ amountOfCategory('parks') }}</span>
+        </label>
+
+        <label>
+          <input type="radio" name="category" [(ngModel)]="category" value="education" />
+          📄 Education <span class="count-pill">{{ amountOfCategory('education') }}</span>
+        </label>
+
+        <label>
+          <input type="radio" name="category" [(ngModel)]="category" value="health" />
+          💗 Healthcare <span class="count-pill">{{ amountOfCategory('health') }}</span>
+        </label>
+      </div>
+    </aside>
+
+    <div class="resources-content">
+
+      <div class="map-box">
+        <strong>map</strong>
+      </div>
+
+      <div class="results-row">
+        <p class="results-count">
+          Showing <b>{{ filteredResources().length }}</b> resources
+          @if (category) { <span class="results-category">in {{ category }}</span> }
+        </p>
+      </div>
+
+      <div class="resource-grid">
+        @for (card of resourcesCards; track card) {
+          @if (!category || card.category === category) {
+            <article class="resource-card" (click)="openModal(card)" role="button" tabindex="0">
+              <div class="card-top">
+                <div class="card-titleblock">
+                  <h3>{{ card.title }}</h3>
+                  <p class="muted">{{ card.description }}</p>
+                </div>
+              </div>
+
+              <ul class="card-meta">
+                <li>📍 {{ card.address }}</li>
+                <li>🕒 {{ card.hours }}</li>
+                <li>📞 {{ card.phone }}</li>
+              </ul>
+
+              <div class="tags">
+                <span class="tag" *ngFor="let t of card.tags">{{ t }}</span>
+              </div>
+
+              <div class="card-actions">
+                <button
+                  class="details-btn"
+                  (click)="$event.stopPropagation(); openModal(card)">
+                  View Details →
+                </button>
+              </div>
+            </article>
+          }
+        }
+      </div>
+
+      <div class="result-box" *ngIf="filteredResources().length === 0">
+        No resources found
+        <span>Try another category or clear filters.</span>
+      </div>
 
     </div>
+  </section>
+</div>
+@if (selectedCard) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="profile-modal" (click)="$event.stopPropagation()">
 
-    <div class="result-box" *ngIf="filteredResources().length === 0">
-      No stories found matching "{{ category }}"
-      <span>Try searching for a different topic.</span>
+      <div class="profile-image">
+        <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" />
+        <div class="image-overlay"></div>
+      </div>
+
+      <div class="profile-content">
+        <button class="close-btn" (click)="closeModal()" aria-label="Close">✕</button>
+
+        <div class="modal-header">
+          <h2>{{ selectedCard.title }}</h2>
+          <p class="subtitle">{{ selectedCard.subtitle }}</p>
+        </div>
+
+        <div class="highlight">
+          {{ selectedCard.specialty }}
+        </div>
+
+        <p class="description">
+          {{ selectedCard.fullDescription }}
+        </p>
+
+        <div class="divider"></div>
+
+        <ul class="details">
+          <li><span class="dot">📍</span> {{ selectedCard.address }}</li>
+          <li><span class="dot">🕒</span> {{ selectedCard.hours }}</li>
+          <li><span class="dot">📞</span> {{ selectedCard.phone }}</li>
+        </ul>
+
+        <div class="modal-actions">
+          <a href="https://www.google.com/maps" target="_blank">
+            <button class="secondary-btn">Directions</button>
+          </a>
+        </div>
+
+      </div>
+
     </div>
-
   </div>
-
-</section>
+}
