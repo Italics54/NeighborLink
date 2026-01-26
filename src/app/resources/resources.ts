@@ -68,7 +68,7 @@ export class Resources {
   hours: "24/7",
   phone: "(555) 444-6789",
   tags: ["Emergency shelter"],
-  category: "housing",
+  category: "health",
 },
 {
   id: 6,
