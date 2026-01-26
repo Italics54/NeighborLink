@@ -262,3 +262,22 @@ body {
   margin-top: 6px;
   font-size: 0.9rem;
 }
+
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-btn {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+}
+
+.clear-btn:hover {
+  color: #000;
+}

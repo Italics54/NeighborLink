@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
 
 export class Resources {
 
-  category: string = '';
+  category: string | null = null;
+
 
   resourcesCards: ResourceCard[] = [
     {
@@ -122,5 +123,9 @@ export class Resources {
 
   amountOfCategory (category: string) {
     return this.resourcesCards.filter(card => card.category === category).length
+  }
+
+  clearFilters() {
+    this.category = null;
   }
 }
