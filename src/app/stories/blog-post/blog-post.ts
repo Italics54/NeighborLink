@@ -12,6 +12,8 @@ import { STORIES, Story } from '../story-data';
 })
 export class BlogPostComponent {
   post?: Story;
+  isCommentsOpen = false;
+
 
   constructor(private route: ActivatedRoute, private router: Router) {
     const id = this.route.snapshot.paramMap.get('id');
@@ -24,5 +26,9 @@ export class BlogPostComponent {
 
   goBack(): void {
     this.router.navigate(['/stories'])
+  }
+
+  openComments() {
+    this.isCommentsOpen = !this.isCommentsOpen;
   }
 }
