@@ -10,7 +10,17 @@
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
+.gradient-text {
+  background: linear-gradient(to bottom, #7436d8, #732ffb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.gradient-text1 {
+  color: #7436d8;
+  animation: fadeUp 0.8s ease;
+}
 .pill {
   display: inline-block;
   padding: 8px 16px;
