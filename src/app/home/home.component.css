@@ -619,7 +619,11 @@ section h2 {
   align-items: center;
   justify-content: center;
 }
-
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+}
 .success-card h2 {
   font-size: 32px;
   font-weight: 800;
