@@ -470,3 +470,49 @@ section h2 {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.08); }
 }
+
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.login-btn {
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 8px 18px;
+  white-space: nowrap;
+}
+
+.login-btn.outline {
+  border: 1.5px solid #8b4de8;
+  background: transparent;
+  color: #8b4de8;
+}
+
+.login-btn.primary {
+  border: none;
+  background: #8b4de8;
+  color: #fff;
+}
+
+.login-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(139, 77, 232, 0.35);
+}
+
+.login-btn.primary:hover {
+  background: #7436d8;
+}
+
+.login-btn.outline:hover {
+  background: #8b4de8;
+  color: #fff;
+}
+
+.login-btn:active {
+  transform: scale(0.96);
+}

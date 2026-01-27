@@ -7,9 +7,9 @@
   </h1>
 
   <p class="subtitle">
-   Connecting neighbors to help, resources, and opportunities<br/>
-  <span class="gradient-text">one search away</span>
-  </p>  
+    Connecting neighbors to help, resources, and opportunities<br />
+    <span class="gradient-text">one search away</span>
+  </p>
   <div class="floating-stat left">
     <span class="did-you-know">Did you know</span>
     <div class="big">50%</div>
@@ -21,18 +21,28 @@
     <div class="big">only 26%</div>
     <div class="text">have a conversation at least once a month</div>
   </div>
-  <div class="search-container">
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input
-        type="text"
-        placeholder="Search for resources, events, or help..."
-      />
-    </div>
-    <button class="search-btn">
-      Search <span>→</span>
-    </button>
-  </div>
+  <div class="auth-buttons"> <ng-container *ngIf="!isLoggedIn"> <button class="login-btn outline"
+        (click)="goToSignInDashboard()">Sign In</button> <button class="login-btn primary"
+        (click)="goToSignUpDashboard()">Sign Up</button> </ng-container> <ng-container *ngIf="isLoggedIn">
+      <section class="events"> <span class="section-pill">DAILY EVENTS FEED</span>
+        <h2>What's Happening Today</h2>
+        <p class="date">Monday, January 20, 2026</p>
+        <div class="event-list">
+          <div class="event food">
+            <h4>Volleyball Training</h4> <span>10:00 AM -- 2:00 PM Zephen's Court</span> <a>View Details →</a>
+          </div>
+          <div class="event wellness">
+            <h4>Mental Health Workshop</h4> <span>3:00 PM - 5:00 PM Online </span> <a>View Details →</a>
+          </div>
+          <div class="event volunteer">
+            <h4>Volunteer Orientation</h4> <span>6:00 PM -- 7:30 PM Office</span> <a>View Details →</a>
+          </div>
+          <div class="event education">
+            <h4>Youth Tutoring Session</h4> <span>4:00 PM -- 6:00 PM Public Library</span> <a>View Details →</a>
+          </div>
+        </div> <button class="calendar-btn">View Full Calendar</button>
+      </section>
+    </ng-container> </div>
 
   <div class="stats">
     <div class="stat-card">
@@ -60,7 +70,7 @@
   <p class="section-subtitle">
     Explore our curated collection of community resources designed to support you and your family.
   </p>
-  
+
 
   <div class="resource-grid">
     <div class="resource-card food">
@@ -106,4 +116,3 @@
     </div>
   </div>
 </section>
-
