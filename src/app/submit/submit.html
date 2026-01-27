@@ -8,51 +8,68 @@
     Know a place that supports our community? Share it with us.
     Submissions are reviewed and considered for future features.
   </p>
-  <form
-    class="resource-form tween-form"
-    (ngSubmit)="onSubmit()"
-    [class.hide]="submitted"
-  >
+  <form class="resource-form tween-form" [formGroup]="resourceForm" (ngSubmit)="onSubmit()" [class.hide]="submitted">
 
     <div class="form-group">
-      <label>Resource Name</label>
-      <input type="text" placeholder="Organization or program name" required>
+      <label>Resource Name <span>(required)</span></label>
+      <input type="text" formControlName="name" placeholder="Organization or program name">
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        <small>Name is required.</small>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Category</label>
-      <input type="text" placeholder="Food, housing, health, education..." required>
+      <label>Category <span>(required)</span></label>
+      <input type="text" formControlName="category" placeholder="Food, housing, health, education...">
+
+      <div *ngIf="category.invalid && (category.dirty || category.touched)" class="error">
+        <small>Category is required.</small>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Location</label>
-      <input type="text" placeholder="City or neighborhood served">
+      <label>Location <span>(required)</span></label>
+      <input type="text" formControlName="location" placeholder="City or neighborhood served">
+
+      <div *ngIf="location.invalid && (location.dirty || location.touched)" class="error">
+        <small>Location is required.</small>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Website or Contact Info</label>
-      <input type="text" placeholder="Website, phone number, or email">
+      <label>Website or Contact Info <span>(required)</span></label>
+      <input type="text" formControlName="contact" placeholder="Website, phone number, or email">
+
+      <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="error">
+        <small>Contact info is required.</small>
+      </div>
     </div>
 
     <div class="form-group">
-      <label>Description</label>
-      <textarea rows="4" placeholder="What does this resource offer? Who is it for?"></textarea>
+      <label>Description <span>(required)</span></label>
+      <textarea rows="4" formControlName="description"
+        placeholder="What does this resource offer? Who is it for?"></textarea>
+
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error">
+        <small>Description is required.</small>
+      </div>
     </div>
 
     <div class="form-group">
       <label>Why should it be featured? <span>(optional)</span></label>
-      <textarea rows="3" placeholder="Tell us why this resource matters"></textarea>
+      <textarea rows="3" formControlName="reason" placeholder="Tell us why this resource matters"></textarea>
     </div>
 
-    <button type="submit" class="submit-btn">
+    <button type="submit" class="submit-btn" [disabled]="resourceForm.invalid">
       Submit Resource
     </button>
 
     <p class="disclaimer">
       Submitting a resource does not guarantee it will be published.
     </p>
-
   </form>
+
   <div class="success-overlay" [class.show]="submitted">
     <div class="success-card">
       <div class="success-icon">✓</div>
@@ -60,7 +77,7 @@
       <h2>Thanks for submitting!</h2>
 
       <p>
-Thanks for submitting! Our team will review the resource and get back to you
+        Thanks for submitting! Our team will review the resource and get back to you
       </p>
 
       <button class="success-btn" (click)="resetForm()">
