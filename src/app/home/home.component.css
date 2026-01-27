@@ -562,3 +562,103 @@ section h2 {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(139, 77, 232, 0.4);
 }
+
+/* styles for button need fixing. just copied and pasted from sign in module */
+.success {
+  color: #28a745;
+  font-size: 13px;
+  margin-top: 6px;
+  text-align: left;
+}
+
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 248, 255, 0.65);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.success-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.success-card {
+  max-width: 520px;
+  background: linear-gradient(135deg, #e8f9ef, #f3fff8);
+  padding: 48px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 180, 90, 0.2);
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.5s ease;
+}
+
+.success-overlay.show .success-card {
+  transform: translateY(0) scale(1);
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #3ccf8e;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f5132;
+  margin-bottom: 12px;
+}
+
+.success-card p {
+  font-size: 16px;
+  color: #2f6f4e;
+  margin-bottom: 28px;
+}
+
+.success-btn {
+  background: #3ccf8e;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.success-btn:hover {
+  background: #2fb879;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(60, 207, 142, 0.4);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

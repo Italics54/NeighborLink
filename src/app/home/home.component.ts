@@ -15,6 +15,7 @@ export class HomeComponent {
 
   isLoggedIn = false;
   username: string | null = null;
+  showModal = false;
 
   constructor(private router: Router, private authService: AuthService) {
     this.authService.loggedIn$.subscribe(status => this.isLoggedIn = status);
@@ -29,7 +30,11 @@ export class HomeComponent {
     this.router.navigate(['/sign-up']);
   }
   goToResources() {
-    this.router.navigate(['/resources']);
+    if (this.isLoggedIn) {
+      this.router.navigate(['/resources']);
+    } else {
+      this.showModal = true;
+    }
   }
     goToCalendar() {
     this.router.navigate(['/calendar']);

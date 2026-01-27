@@ -12,15 +12,11 @@
   </p>
   <div class="hero-cta" *ngIf="!isLoggedIn">
     <div class="auth-buttons large">
-      <button
-        class="login-btn outline"
-        (click)="goToSignInDashboard()">
+      <button class="login-btn outline" (click)="goToSignInDashboard()">
         Join back
       </button>
 
-      <button
-        class="login-btn primary"
-        (click)="goToSignUpDashboard()">
+      <button class="login-btn primary" (click)="goToSignUpDashboard()">
         Join us
       </button>
     </div>
@@ -70,7 +66,7 @@
       <p>access to food banks, meal programs, and nutrition support for families in need</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
 
     <button class="resource-card housing" (click)="goToResources()">
@@ -79,7 +75,7 @@
       <p>Emergency shelter, rental assistance, and housing resources for stable living.</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
 
     <button class="resource-card wellness" (click)="goToResources()">
@@ -88,7 +84,7 @@
       <p>Counseling services, support groups, and mental health resources available 24/7.</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
 
     <button class="resource-card jobs" (click)="goToResources()">
@@ -97,7 +93,7 @@
       <p>Career counseling, skill-building workshops, and employment opportunities.</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
 
     <button class="resource-card education" (click)="goToResources()">
@@ -106,7 +102,7 @@
       <p>Tutoring, scholarship info, and educational resources for all ages.</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
 
     <button class="resource-card volunteer" (click)="goToResources()">
@@ -115,8 +111,18 @@
       <p>Join our volunteer network and make a difference in your community.</p>
       <button class="learn-more-btn" (click)="goToResources()">
         Learn more
-      </button> 
+      </button>
     </button>
+
+    <div class="success-overlay" [class.show]="showModal">
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Welcome!</h2>
+        <p>Would you like to Sign Up or Log In</p>
+        <button class="success-btn" (click)="goToSignUpDashboard()">Sign Up</button>
+        <button class="success-btn" (click)="goToSignInDashboard()">Sign In</button>
+      </div>
+    </div>
   </div>
 </section>
 <section class="events" *ngIf="isLoggedIn">
@@ -152,4 +158,3 @@
 
   <button class="calendar-btn" (click)="goToCalendar()">View Full Calendar</button>
 </section>
-
