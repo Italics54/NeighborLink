@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,11 @@ export class SignInComponent {
   signInForm: FormGroup;
   showSuccess = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -26,18 +31,19 @@ export class SignInComponent {
   get password() { return this.signInForm.get('password')!; }
   get community() { return this.signInForm.get('community')!; }
 
-
-
   onSubmit(): void {
     if (this.signInForm.valid) {
       this.showSuccess = true;
-      setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+
+      this.authService.login(this.email.value);
+
     } else {
       this.signInForm.markAllAsTouched();
     }
   }
 
-  goToDashboard(): void {
-    this.router.navigate(['/dashboard']);
+  goToResources(): void {
+    this.showSuccess = false;
+    this.router.navigate(['/resources']);
   }
 }

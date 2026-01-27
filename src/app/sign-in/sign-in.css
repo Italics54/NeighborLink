@@ -235,3 +235,10 @@ textarea:focus {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+.success {
+  color: #28a745;
+  font-size: 13px;
+  margin-top: 6px;
+  text-align: left;
+}

@@ -1,11 +1,19 @@
 <section class="submit-hero">
-  <div class="pill">Welcome Back</div>
-  <h1>Sign In</h1>
+  <div class="pill">Join Us</div>
+  <h1>Sign Up</h1>
   <div class="subtitle">
-    Access your account to continue. Enter your credentials below.
+    Create your account to access your community resources. Fill in the details below.
   </div>
 
-  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="resource-form" [class.hide]="showSuccess">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="resource-form" [class.hide]="showSuccess">
+    <div class="form-group">
+      <label for="name">Full Name <span>(required)</span></label>
+      <input type="text" id="name" formControlName="name" placeholder="John Doe" required>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        <small *ngIf="name.errors?.['required']">Name is required.</small>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="email">Email <span>(required)</span></label>
       <input type="email" id="email" formControlName="email" placeholder="you@example.com" required>
@@ -25,6 +33,21 @@
     </div>
 
     <div class="form-group">
+        <label for="confirmPassword">Confirm Password <span>(required)</span></label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password"
+            required>
+
+        <div *ngIf="confirmPassword.touched || confirmPassword.dirty">
+            <small *ngIf="confirmPassword.errors?.['required']" class="error">Confirming your password is required.</small>
+
+            <small *ngIf="passwordsMatchStatus === 'match'" class="success">Passwords match ✅</small>
+            <small *ngIf="passwordsMatchStatus === 'mismatch'" class="error">Passwords do not match ❌</small>
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
       <label for="community">Community <span>(required)</span></label>
       <input type="text" id="community" formControlName="community" placeholder="Enter your community name" required>
       <div *ngIf="community.invalid && (community.dirty || community.touched)" class="error">
@@ -32,10 +55,10 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn" [disabled]="signInForm.invalid">Sign In</button>
+    <button type="submit" class="submit-btn" [disabled]="signUpForm.invalid">Sign Up</button>
 
     <div class="disclaimer">
-      Forgot your password? <a routerLink="/forgot-password">Reset it here</a>
+      Already have an account? <a routerLink="/sign-in" routerLinkActive="active">Sign in here</a>
     </div>
   </form>
 </section>
@@ -43,8 +66,8 @@
 <div class="success-overlay" [class.show]="showSuccess">
   <div class="success-card">
     <div class="success-icon">✓</div>
-    <h2>Welcome Back!</h2>
-    <p>You have successfully signed in.</p>
+    <h2>Welcome!</h2>
+    <p>Your account has been successfully created.</p>
     <button class="success-btn" (click)="goToResources()">Continue to your Community Resources</button>
   </div>
 </div>

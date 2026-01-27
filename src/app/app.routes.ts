@@ -5,6 +5,8 @@ import { Stories } from './stories/stories';
 import { Calendar } from './calendar/calendar';
 import { Submit } from './submit/submit';
 import { SignInComponent } from './sign-in/sign-in';
+import { SignUpComponent } from './sign-up/sign-up';
+import { References } from './references/references';
 import { BlogPostComponent } from './stories/blog-post/blog-post';
 import { Ourstory } from './ourstory/ourstory';
 
@@ -15,6 +17,8 @@ export const routes: Routes = [
   { path: 'calendar', component: Calendar },
   { path: 'submit', component: Submit },
   { path: 'sign-in', component: SignInComponent },
+  { path: 'references', component: References },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'stories/:id', component: BlogPostComponent },
   { path: 'our-story', component: Ourstory },
   { path: '', redirectTo: '/stories', pathMatch: 'full' },

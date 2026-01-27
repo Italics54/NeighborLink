@@ -1,6 +1,7 @@
 <header class="site-header">
   <div class="header-left">
     <div class="brand">
+      <!-- Logo here -->
     </div>
   </div>
 
@@ -27,5 +28,24 @@
       References
     </a>
   </nav>
-  <button class="login-btn" (click)="goToDashboard()">Sign In</button>
+
+  <div class="auth-buttons">
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="login-btn outline" (click)="goToSignInDashboard()">Sign In</button>
+      <button class="login-btn primary" (click)="goToSignUpDashboard()">Sign Up</button>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+      <div class="account-dropdown">
+        <button class="login-btn primary" (click)="toggleDropdown()">
+          Account ▼
+        </button>
+        <ul *ngIf="dropdownOpen" class="dropdown-menu">
+          <li><a routerLink="/profile">Profile</a></li>
+          <li><a routerLink="/settings">Settings</a></li>
+          <li><button (click)="logout()">Logout</button></li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
 </header>

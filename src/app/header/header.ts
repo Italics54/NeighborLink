@@ -1,18 +1,39 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
 })
 export class Header {
-  constructor(private router: Router){}
+  isLoggedIn = false;
+  username: string | null = null;
+  dropdownOpen = false;
 
-  goToDashboard() {
+  constructor(private router: Router, private authService: AuthService) {
+    this.authService.loggedIn$.subscribe(status => this.isLoggedIn = status);
+    this.authService.username$.subscribe(name => this.username = name);
+  }
+
+  goToSignInDashboard() {
     this.router.navigate(['/sign-in']);
+  }
+
+  goToSignUpDashboard() {
+    this.router.navigate(['/sign-up']);
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }
