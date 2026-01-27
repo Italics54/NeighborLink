@@ -1,12 +1,12 @@
-<!-- <div class="story-page-container" *ngIf="post">
+<div class="story-page-container" *ngIf="post">
   <div class="story-hero">
-    <h1>{{ post?.title }}</h1>
-    <span class="story-category">{{ post?.category }}</span>
+    <h1>{{ post.title }}</h1>
+    <span class="story-category">{{ post.category }}</span>
   </div>
 
   <button class="back-btn" (click)="goBack()">← Back to Stories</button>
 
-  <div class="story-content" [innerHTML]="post?.content"></div>
+  <div class="story-content" [innerHTML]="post.content"></div>
 </div>
 
 <button class="comments-fab" (click)="openComments()">
@@ -29,4 +29,4 @@
 
 <div *ngIf="!post">
   <p>Story not found.</p>
-</div> -->
+</div>

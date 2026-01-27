@@ -11,7 +11,7 @@ import { STORIES, Story } from '../story-data';
   imports: [CommonModule]
 })
 export class BlogPostComponent {
-  post?: Story;
+  post: Story | undefined;
   isCommentsOpen = false;
 
 
