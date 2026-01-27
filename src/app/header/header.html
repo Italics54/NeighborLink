@@ -6,27 +6,41 @@
   </div>
 
   <nav class="nav">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      Home
-    </a>
-    <a routerLink="/resources" routerLinkActive="active">
-      Resources
-    </a>
-    <a routerLink="/stories" routerLinkActive="active">
-      Stories
-    </a>
-    <a routerLink="/calendar" routerLinkActive="active">
-      Calendar
-    </a>
-    <a routerLink="/submit" routerLinkActive="active">
-      Submit
-    </a>
-    <a routerLink="/our-story" routerLinkActive="active">
-      Our Story
-    </a>
-    <a routerLink="/references" routerLinkActive="active">
-      References
-    </a>
+    <ng-container *ngIf="!isLoggedIn">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/our-story" routerLinkActive="active">
+        Our Story
+      </a>
+      <a routerLink="/references" routerLinkActive="active">
+        References
+      </a>
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/our-story" routerLinkActive="active">
+        Our Story
+      </a>
+      <a routerLink="/resources" routerLinkActive="active">
+        Resources
+      </a>
+      <a routerLink="/stories" routerLinkActive="active">
+        Stories
+      </a>
+      <a routerLink="/calendar" routerLinkActive="active">
+        Calendar
+      </a>
+      <a routerLink="/submit" routerLinkActive="active">
+        Submit
+      </a>
+      <a routerLink="/references" routerLinkActive="active">
+        References
+      </a>
+    </ng-container>
+
   </nav>
 
   <div class="auth-buttons">
