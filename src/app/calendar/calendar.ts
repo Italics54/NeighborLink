@@ -44,7 +44,7 @@ export class Calendar {
       date: 'February 25, 2026',
       time: '3:00 PM',
       category: 'Food Bank Event',
-      location: 'Harmony Point Whole Health'
+      location: 'Hope Shelter'
     }
   ];
 
@@ -75,7 +75,7 @@ export class Calendar {
       date: 'February 3, 2026',
       time: '6:00 PM',
       category: 'Recreation',
-      location: 'Community Rec Center - West Court'
+      location: 'Eastside Recreation Center- West Court'
     }
   ];
 
