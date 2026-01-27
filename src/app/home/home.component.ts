@@ -28,4 +28,10 @@ export class HomeComponent {
   goToSignUpDashboard() {
     this.router.navigate(['/sign-up']);
   }
+  goToResources() {
+    this.router.navigate(['/resources']);
+  }
+    goToCalendar() {
+    this.router.navigate(['/calendar']);
+  }
 }
