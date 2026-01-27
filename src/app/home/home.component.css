@@ -136,15 +136,51 @@
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
 }
 
-.stat-icon {
-  font-size: 22px;
-  color: #8b4de8;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
+.stat-card {
+  position: relative;
+  background: #fafafa;
+  padding: 32px;
+  border-radius: 18px;
+  text-align: left;
+
+  border: 1px solid rgba(139, 77, 232, 0.12);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+
+  transform: translateY(0);
+
+  animation: fadeUp 0.7s var(--ease-out) both;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+
+  will-change: transform;
 }
 
-.stat-card:hover .stat-icon {
-  transform: scale(1.2) rotate(-5deg);
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  box-shadow: 0 0 0 2px rgba(139, 77, 232, 0.18) inset;
+}
+
+.stat-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(139, 77, 232, 0.35);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:active {
+  transform: translateY(-7px) scale(0.995);
 }
 
 .stat-card h3 {
@@ -201,17 +237,50 @@ section h2 {
 }
 
 .resource-card {
+  position: relative;
   background: #fafafa;
   padding: 32px;
   border-radius: 18px;
   text-align: left;
-  transition: all 0.35s ease;
-  animation: fadeUp 0.8s ease both;
+
+  border: 1px solid rgba(139, 77, 232, 0.12);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+
+  transform: translateY(0);
+
+  animation: fadeUp 0.7s var(--ease-out) both;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+
+  will-change: transform;
+}
+
+.resource-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  box-shadow: 0 0 0 2px rgba(139, 77, 232, 0.18) inset;
 }
 
 .resource-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+  transform: translateY(-12px);
+  border-color: rgba(139, 77, 232, 0.35);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+}
+
+.resource-card:hover::before {
+  opacity: 1;
+}
+
+.resource-card:active {
+  transform: translateY(-7px) scale(0.995);
 }
 
 .resource-card .icon {
@@ -303,4 +372,91 @@ section h2 {
   from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+.floating-stat {
+  position: absolute;
+  top: 120px;             
+  width: 260px;
+  padding: 18px 18px 16px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(139, 77, 232, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(10px);
 
+  opacity: 0;
+  transform: translateY(14px);
+  animation: floatIn 0.9s ease forwards, floatY 3.2s ease-in-out infinite;
+  z-index: 2;
+}
+.floating-stat .big {
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1;
+  color: #8b4de8;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.floating-stat .text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.35;
+}
+
+.floating-stat.left {
+  left: 90px;
+  transform: rotate(-6deg);
+  animation-delay: 0.1s;
+}
+
+.floating-stat.right {
+  right: 90px;
+  transform: rotate(6deg);
+  animation-delay: 0.2s;
+}
+
+@keyframes floatIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--tilt, 0deg));
+  }
+}
+
+.floating-stat.left { --tilt: -6deg; }
+.floating-stat.right { --tilt: 6deg; }
+
+@media (max-width: 1050px) {
+  .floating-stat {
+    display: none;
+  }
+}
+.did-you-know {
+  position: absolute;
+  top: -12px;
+  left: 18px;
+  background: #8b4de8;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(139, 77, 232, 0.35);
+  animation: tagPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes tagPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
