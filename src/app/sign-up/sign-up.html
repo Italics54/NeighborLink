@@ -33,23 +33,30 @@
     </div>
 
     <div class="form-group">
-        <label for="confirmPassword">Confirm Password <span>(required)</span></label>
-        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password"
-            required>
+      <label for="confirmPassword">Confirm Password <span>(required)</span></label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password"
+        required>
 
-        <div *ngIf="confirmPassword.touched || confirmPassword.dirty">
-            <small *ngIf="confirmPassword.errors?.['required']" class="error">Confirming your password is required.</small>
+      <div *ngIf="confirmPassword.touched || confirmPassword.dirty">
+        <small *ngIf="confirmPassword.errors?.['required']" class="error">Confirming your password is required.</small>
 
-            <small *ngIf="passwordsMatchStatus === 'match'" class="success">Passwords match ✅</small>
-            <small *ngIf="passwordsMatchStatus === 'mismatch'" class="error">Passwords do not match ❌</small>
-        </div>
+        <small *ngIf="passwordsMatchStatus === 'match'" class="success">Passwords match ✅</small>
+        <small *ngIf="passwordsMatchStatus === 'mismatch'" class="error">Passwords do not match ❌</small>
+      </div>
     </div>
 
-    
+
 
     <div class="form-group">
       <label for="community">Community <span>(required)</span></label>
-      <input type="text" id="community" formControlName="community" placeholder="Enter your community name" required>
+
+      <select id="community" formControlName="community" required>
+        <option value="" disabled selected>Select your community</option>
+        <option value="harmonypoint">Harmony Point</option>
+        <option value="georgetown">Georgetown</option>
+        <option value="austin">Austin</option>
+      </select>
+
       <div *ngIf="community.invalid && (community.dirty || community.touched)" class="error">
         <small *ngIf="community.errors?.['required']">Community is required.</small>
       </div>
