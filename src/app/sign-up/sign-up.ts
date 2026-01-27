@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,11 @@ export class SignUpComponent {
   signUpForm: FormGroup;
   showSuccess = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -34,18 +39,9 @@ export class SignUpComponent {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
 
-    if (confirm === '') return null;
-
-    if (pass === confirm) {
-      group.get('confirmPassword')?.setErrors(null);
-      return null;
-    } else {
-      group.get('confirmPassword')?.setErrors({ mismatch: true });
-      return { mismatch: true };
-    }
+    return pass === confirm ? null : { mismatch: true };
   }
 
-  // Helper to know if passwords currently match
   get passwordsMatchStatus(): 'match' | 'mismatch' | null {
     const pass = this.password.value;
     const confirm = this.confirmPassword.value;
@@ -56,6 +52,9 @@ export class SignUpComponent {
   onSubmit(): void {
     if (this.signUpForm.valid) {
       this.showSuccess = true;
+
+      this.authService.login(this.name.value);
+
     } else {
       this.signUpForm.markAllAsTouched();
     }

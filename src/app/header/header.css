@@ -2,14 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 16px 40px;
   background: #fff;
-
   position: sticky;
   top: 0;
   z-index: 10;
-
   animation: slideDown 0.6s ease;
 }
 
@@ -17,15 +14,16 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 28px;
-
-  flex: 1;               
   justify-content: center;
+  gap: 28px;
+  flex: 1;
+  min-width: 0;
 }
 
 .nav a {
@@ -34,6 +32,7 @@
   color: #2b2b2b;
   text-decoration: none;
   transition: color 0.25s ease;
+  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -60,10 +59,11 @@
   width: 100%;
 }
 
-
 .auth-buttons {
   display: flex;
   gap: 12px;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 .login-btn {
@@ -72,6 +72,7 @@
   cursor: pointer;
   transition: all 0.25s ease;
   padding: 8px 18px;
+  white-space: nowrap;
 }
 
 .login-btn.outline {
@@ -102,4 +103,42 @@
 
 .login-btn:active {
   transform: scale(0.96);
+}
+
+.account-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.account-dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 20;
+}
+
+.account-dropdown .dropdown-menu li {
+  padding: 10px 16px;
+}
+
+.account-dropdown .dropdown-menu li:hover {
+  background: #f0f0f0;
+}
+
+.account-dropdown .dropdown-menu button {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }

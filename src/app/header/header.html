@@ -1,32 +1,36 @@
 <header class="site-header">
   <div class="header-left">
     <div class="brand">
+      <!-- Logo here -->
     </div>
   </div>
 
   <nav class="nav">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      Home
-    </a>
-    <a routerLink="/resources" routerLinkActive="active">
-      Resources
-    </a>
-    <a routerLink="/stories" routerLinkActive="active">
-      Stories
-    </a>
-    <a routerLink="/calendar" routerLinkActive="active">
-      Calendar
-    </a>
-    <a routerLink="/submit" routerLinkActive="active">
-      Submit
-    </a>
-    <a routerLink="/references" routerLinkActive="active">
-      References
-    </a>
-    
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/resources" routerLinkActive="active">Resources</a>
+    <a routerLink="/stories" routerLinkActive="active">Stories</a>
+    <a routerLink="/calendar" routerLinkActive="active">Calendar</a>
+    <a routerLink="/submit" routerLinkActive="active">Submit</a>
+    <a routerLink="/references" routerLinkActive="active">References</a>
   </nav>
+
   <div class="auth-buttons">
-    <button class="login-btn outline" (click)="goToSignInDashboard()">Sign In</button>
-    <button class="login-btn primary" (click)="goToSignUpDashboard()">Sign Up</button>
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="login-btn outline" (click)="goToSignInDashboard()">Sign In</button>
+      <button class="login-btn primary" (click)="goToSignUpDashboard()">Sign Up</button>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+      <div class="account-dropdown">
+        <button class="login-btn primary" (click)="toggleDropdown()">
+          Account ▼
+        </button>
+        <ul *ngIf="dropdownOpen" class="dropdown-menu">
+          <li><a routerLink="/profile">Profile</a></li>
+          <li><a routerLink="/settings">Settings</a></li>
+          <li><button (click)="logout()">Logout</button></li>
+        </ul>
+      </div>
+    </ng-container>
   </div>
 </header>
