@@ -8,42 +8,37 @@
   </div>
   <div class="calendar-layout">
     <div class="calendar-card">
-      <div class="calendar-title">January 2026</div>
+      <div class="calendar-title">February 2026</div>
 
       <div class="weekdays">
         <span>Sun</span><span>Mon</span><span>Tue</span>
         <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
       </div>
       <div class="days">
-        <span class="muted">28</span>
-        <span class="muted">29</span>
-        <span class="muted">30</span>
-        <span class="muted">31</span>
 
         <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span><span>7</span>
+        <span>4</span><span>5</span><span>6</span><span class="event-day" class="selected" (click)="openDay(7)">7</span>
         <span>8</span><span>9</span><span>10</span>
         <span>11</span><span>12</span><span>13</span><span>14</span>
-        <span>15</span><span>16</span><span>17</span>
-        <span>18</span><span>19</span><span>20</span><span>21</span>
+        <span>15</span><span class="event-day">16</span><span>17</span>
+        <span>18</span><span class="event-day">19</span><span>20</span><span>21</span>
         <span>22</span><span>23</span><span>24</span>
 
-        <span (click)="openDay(25)" class="event-day">25</span>
+        <span class="event-day">25</span>
         <span>26</span><span>27</span>
-        <span>28</span><span class="selected">29</span>
-        <span>30</span><span>31</span>
+        <span>28</span>
       </div>
     </div>
     <div class="bottom-modal" *ngIf="selectedDay">
       <div class="modal-sheet">
         <button class="close-btn" (click)="closeModal()">✕</button>
-        <h3>Events for January {{ selectedDay }}</h3>
+        <h3>Events for February {{ selectedDay }}</h3>
 
         <div>
-          <div class="modal-event" *ngFor="let event of selectedEvents">
+          <div class="modal-event" *ngFor="let event of todaysEvents">
             <h4>{{ event.title }}</h4>
             <p>{{ event.time }}</p>
-            <p>{{ event.category }}</p>
+            <p>{{ event.location }}</p>
           </div>
         </div>
 
@@ -53,7 +48,7 @@
       </div>
     </div>
     <div class="upcoming-card">
-      <h3 class="upcoming-title">Upcoming Events</h3>
+      <h3 class="upcoming-title">Upcoming BIG Events</h3>
       <div class="upcoming-events">
         <div class="upcoming-event" *ngFor="let event of upcomingEvents; let i = index"
           [style.animationDelay]="i * 0.12 + 's'">
@@ -65,6 +60,7 @@
             <span class="event-category">{{ event.category }}</span>
             <h4 class="event-title">{{ event.title }}</h4>
             <p class="event-time">{{ event.time }}</p>
+            <p class="event-category">{{ event.location }}</p>
           </div>
 
         </div>
