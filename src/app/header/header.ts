@@ -12,7 +12,11 @@ import { Router } from '@angular/router';
 export class Header {
   constructor(private router: Router){}
 
-  goToDashboard() {
+  goToSignInDashboard() {
     this.router.navigate(['/sign-in']);
+  }
+
+  goToSignUpDashboard() {
+    this.router.navigate(['/sign-up']);
   }
 }
