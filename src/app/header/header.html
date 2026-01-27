@@ -25,7 +25,8 @@
     </a>
     
   </nav>
-  <button class="login-btn" (click)="goToSignInDashboard()">Sign In</button>
-  
-  <button class="login-btn" (click)="goToSignUpDashboard()">Sign Up</button>
+  <div class="auth-buttons">
+    <button class="login-btn outline" (click)="goToSignInDashboard()">Sign In</button>
+    <button class="login-btn primary" (click)="goToSignUpDashboard()">Sign Up</button>
+  </div>
 </header>
