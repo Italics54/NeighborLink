@@ -6,6 +6,7 @@ import { Calendar } from './calendar/calendar';
 import { Submit } from './submit/submit';
 import { SignInComponent } from './sign-in/sign-in';
 import { BlogPostComponent } from './stories/blog-post/blog-post';
+import { Ourstory } from './ourstory/ourstory';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'submit', component: Submit },
   { path: 'sign-in', component: SignInComponent },
   { path: 'stories/:id', component: BlogPostComponent },
+  { path: 'our-story', component: Ourstory },
   { path: '', redirectTo: '/stories', pathMatch: 'full' },
   { path: '**', redirectTo: '/stories' }
 ];
