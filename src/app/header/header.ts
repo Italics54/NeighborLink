@@ -28,6 +28,14 @@ export class Header {
     this.router.navigate(['/sign-up']);
   }
 
+  goToSubmit() {
+    this.router.navigate(['/submit'])
+  }
+
+  goToSettings() {
+    this.router.navigate(['/settings'])
+  }
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }

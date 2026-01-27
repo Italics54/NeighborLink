@@ -6,6 +6,7 @@ import { Calendar } from './calendar/calendar';
 import { Submit } from './submit/submit';
 import { SignInComponent } from './sign-in/sign-in';
 import { SignUpComponent } from './sign-up/sign-up';
+import { Settings } from './settings/settings';
 import { References } from './references/references';
 import { BlogPostComponent } from './stories/blog-post/blog-post';
 import { Ourstory } from './ourstory/ourstory';
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'stories', component: Stories },
   { path: 'calendar', component: Calendar },
   { path: 'submit', component: Submit },
+  { path: 'settings', component: Settings },
   { path: 'sign-in', component: SignInComponent },
   { path: 'references', component: References },
   { path: 'sign-up', component: SignUpComponent },

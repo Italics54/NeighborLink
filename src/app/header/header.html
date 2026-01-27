@@ -41,8 +41,8 @@
           Account ▼
         </button>
         <ul *ngIf="dropdownOpen" class="dropdown-menu">
-          <li><a routerLink="/profile">Profile</a></li>
-          <li><a routerLink="/settings">Settings</a></li>
+          <li><button (click)="goToSettings()">Settings</button></li>
+          <li><button (click)="goToSubmit()">Submit</button></li>
           <li><button (click)="logout()">Logout</button></li>
         </ul>
       </div>
