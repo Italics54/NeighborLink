@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ngClass, ngFor
-import { FormsModule } from '@angular/forms';    // ngModel
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 interface Message {
@@ -14,17 +14,23 @@ interface Message {
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule   // for HTTP calls
+    HttpClientModule  // for HTTP calls
   ],
   templateUrl: './chatbot.html',
   styleUrls: ['./chatbot.css']
 })
 export class ChatbotComponent {
   messages: Message[] = [];
-  messageText: string = '';
-  loading: boolean = false;
+  messageText = '';
+  loading = false;
+
+  isChatOpen = false;
 
   constructor(private http: HttpClient) {}
+
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen;
+  }
 
   sendMessage() {
     const text = this.messageText.trim();
@@ -34,16 +40,21 @@ export class ChatbotComponent {
     this.messageText = '';
     this.loading = true;
 
-    this.http.post<{ reply: string }>('http://localhost:3000/chat', { message: text })
-      .subscribe({
-        next: (res) => {
-          this.messages.push({ sender: 'bot', text: res.reply });
-          this.loading = false;
-        },
-        error: () => {
-          this.messages.push({ sender: 'bot', text: 'Oops! Something went wrong.' });
-          this.loading = false;
-        }
-      });
+    this.http.post<{ reply: string }>(
+      'http://localhost:3000/chat',
+      { message: text }
+    ).subscribe({
+      next: (res) => {
+        this.messages.push({ sender: 'bot', text: res.reply });
+        this.loading = false;
+      },
+      error: () => {
+        this.messages.push({
+          sender: 'bot',
+          text: 'Oops! Something went wrong.'
+        });
+        this.loading = false;
+      }
+    });
   }
 }
