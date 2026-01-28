@@ -24,6 +24,10 @@
       </div>
     </div>
 
+    <div *ngIf="errorMsg" class="error">
+      {{ errorMsg }}
+    </div>
+
     <button type="submit" class="submit-btn" [disabled]="signInForm.invalid">Sign In</button>
 
     <div class="disclaimer">

@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  AbstractControl
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
@@ -12,8 +18,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['../sign-in/sign-in.css']
 })
 export class SignUpComponent {
+
   signUpForm: FormGroup;
   showSuccess = false;
+  errorMsg = '';
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -50,14 +59,37 @@ export class SignUpComponent {
   }
 
   onSubmit(): void {
-    if (this.signUpForm.valid) {
-      this.showSuccess = true;
 
-      this.authService.login(this.name.value);
-
-    } else {
+    if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
+      return;
+    } else {
+      this.loading = true;
+      this.errorMsg = '';
+
+      const data = {
+        name: this.name.value,
+        email: this.email.value,
+        password: this.password.value,
+        community: this.community.value
+      };
+
+      this.authService.signup(data).subscribe({
+        next: () => {
+          this.authService.login(this.email.value, this.password.value)
+          this.loading = false;
+          this.showSuccess = true;
+        },
+        error: err => {
+          this.loading = false;
+          this.errorMsg = err.error?.message || 'Signup failed';
+          console.log(this.errorMsg)
+        }
+      });
+
     }
+
+
   }
 
   goToResources(): void {

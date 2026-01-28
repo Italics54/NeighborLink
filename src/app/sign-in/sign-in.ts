@@ -12,8 +12,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-in.css']
 })
 export class SignInComponent {
+
   signInForm: FormGroup;
   showSuccess = false;
+  errorMsg = '';
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,14 +33,25 @@ export class SignInComponent {
   get password() { return this.signInForm.get('password')!; }
 
   onSubmit(): void {
-    if (this.signInForm.valid) {
-      this.showSuccess = true;
 
-      this.authService.login(this.email.value);
-
-    } else {
+    if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
+      return;
     }
+
+    this.loading = true;
+    this.errorMsg = '';
+
+    this.authService.login(this.email.value, this.password.value).subscribe({
+      next: () => {
+        this.loading = false;
+        this.showSuccess = true;
+      },
+      error: err => {
+        this.loading = false;
+        this.errorMsg = err.error?.message || 'Login failed';
+      }
+    });
   }
 
   goToResources(): void {
