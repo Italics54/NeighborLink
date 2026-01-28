@@ -2,7 +2,31 @@
   {
     "name": "Zephan",
     "email": "ofori.zephan@gmail.com",
-    "password": "$2b$10$KJZjRkUn1tPawxMPRPJ.5OBdcNBMvIwswCTO180eWLJ4hvl7xLu8a",
+    "password": "$2b$10$UZnH74D4GPMPsMf0tvTrbOeXIWNMUCAWbSQXGSfV3S6pLtPt3AawO",
     "community": "harmonypoint"
+  },
+  {
+    "name": "Zephan",
+    "email": "ofori.zephan+1@gmail.com",
+    "password": "$2b$10$UDp8pNwtf3STbwStF7RMkuUqynwiCl1fQXXf4s35B75ea7e4i2GGq",
+    "community": "georgetown"
+  },
+  {
+    "name": "Zephan Ofori",
+    "email": "ofori.zephan+65@gmail.com",
+    "password": "$2b$10$hsYE7pCInIi3Od2zJDlZfe66AcyP8PMfV3kA5r16uFpc6pcrN.aJ.",
+    "community": "harmonypoint"
+  },
+  {
+    "name": "Zephan",
+    "email": "ofori.zephan+@gmail.com",
+    "password": "$2b$10$NpOJVSWlP/rnrFqkG/NCRO2ENm7YDdtaQGgu.7zffUb40ITQep6Iq",
+    "community": "georgetown"
+  },
+  {
+    "name": "Zephan",
+    "email": "kwamez05@hotmail.com",
+    "password": "$2b$10$0NPFuswYExDDpibPZ7Xg2OpNxv5K/wP9HcE.YfvSn07jjka00vVqO",
+    "community": "georgetown"
   }
 ]

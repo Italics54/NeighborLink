@@ -12,10 +12,6 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-/* ===============================
-   SIMPLE FILE DATABASE
-================================*/
-
 const USERS_FILE = "./users.json";
 
 function readUsers() {
@@ -83,10 +79,6 @@ app.post("/api/login", async (req, res) => {
   });
 });
 
-/* ===============================
-   CHATBOT (UNCHANGED)
-================================*/
-
 let websiteContent = "";
 
 try {
@@ -117,9 +109,6 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-/* ===============================
-   START SERVER
-================================*/
 
 app.listen(PORT, () => {
   console.log(`✅ Backend running at http://localhost:${PORT}`);
