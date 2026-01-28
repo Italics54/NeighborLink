@@ -1,0 +1,34 @@
+NeighborLink is a community hub website built for neighbors and by neighbors. 
+The goal of NeighborLink is to unify neighbors within a community, allowing them to interact, share information, and stay updated on what is happening in their neighborhood.
+
+Website Structure:
+
+1. **Home Page**  
+   - The first page you see when visiting NeighborLink.  
+   - To access community features, you must create an account or log in.  
+   - Use the "Join" or "Sign In" button in the header. Enter your email, password, and select your community.
+
+2. **Community Resources Page**  
+   - Accessible after logging in.  
+   - Displays numerous resources available within your community.  
+   - You can monitor events, updates, and other community activity.
+
+3. **Stories Page**  
+   - Shows local stories posted by neighbors.  
+   - You can read stories, leave comments, and engage with events and experiences in your community.
+
+4. **Calendar Page**  
+   - Displays the community calendar.  
+   - Shows events, activities, and important dates happening in your neighborhood.  
+   - Helps you plan participation or visit events.
+
+5. **Submit a Resource Page**  
+   - Allows you to submit a resource that may not be known to others in your community.  
+   - Accessible via the header under your account dropdown.  
+   - Fill out a few questions to submit a resource; submissions are reviewed by the NeighborLink team.
+
+6. **Account Settings**  
+   - Located at the top right of the page.  
+   - Change the community you belong to.  
+   - Access the submit resource button and other account options.  
+   - To log out, click your account in the top right and select "Log Out." Logging out removes access to community features until you log in again.
