@@ -24,25 +24,10 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="community">Community <span>(required)</span></label>
-
-      <select id="community" formControlName="community" required>
-        <option value="" disabled selected>Select your community</option>
-        <option value="harmonypoint">Harmony Point</option>
-        <option value="georgetown">Georgetown</option>
-        <option value="austin">Austin</option>
-      </select>
-
-      <div *ngIf="community.invalid && (community.dirty || community.touched)" class="error">
-        <small *ngIf="community.errors?.['required']">Community is required.</small>
-      </div>
-    </div>
-
     <button type="submit" class="submit-btn" [disabled]="signInForm.invalid">Sign In</button>
 
     <div class="disclaimer">
-      Forgot your password? <a routerLink="/forgot-password">Reset it here</a>
+      Forgot your password? <a href="https://mail.google.com/" target="_blank">Contact Us</a>
     </div>
   </form>
 </section>

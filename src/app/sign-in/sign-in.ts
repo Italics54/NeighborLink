@@ -23,13 +23,11 @@ export class SignInComponent {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      community: ['', Validators.required]
     });
   }
 
   get email() { return this.signInForm.get('email')!; }
   get password() { return this.signInForm.get('password')!; }
-  get community() { return this.signInForm.get('community')!; }
 
   onSubmit(): void {
     if (this.signInForm.valid) {
