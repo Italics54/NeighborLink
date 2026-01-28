@@ -41,6 +41,7 @@ export class Header {
   }
 
   logout() {
+    this.toggleDropdown();
     this.authService.logout();
     this.router.navigate(['/']);
   }

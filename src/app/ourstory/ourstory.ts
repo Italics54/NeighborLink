@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ourstory.css',
 })
 export class Ourstory {
-    isLoggedIn = false;
+  isLoggedIn = false;
   username: string | null = null;
     constructor(private router: Router, private authService: AuthService) {
     this.authService.loggedIn$.subscribe(status => this.isLoggedIn = status);
@@ -19,6 +19,10 @@ export class Ourstory {
   }
 
   goToSignUpDashboard() {
-    this.router.navigate(['/sign-up']);
+    if (this.isLoggedIn) {
+      this.router.navigate(['/resources'])
+    } else {
+      this.router.navigate(['/sign-up']);
+    }
   }
 }
