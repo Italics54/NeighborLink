@@ -1,1 +1,37 @@
-<p>settings works!</p>
+<div class="submit-hero">
+  <div class="pill">Community Settings</div>
+  <h1>Change Your Community</h1>
+  <p class="subtitle">
+    Select the community you want to join. Some communities are not available yet.
+  </p>
+
+  <form class="resource-form" (ngSubmit)="saveCommunity($event)">
+    <div class="form-group">
+      <label>Select Community:</label>
+      <div class="community-options">
+        <button type="button" 
+                class="community-btn available" 
+                [class.selected]="selectedCommunity === 'Harmony Point'" 
+                (click)="selectCommunity('Harmony Point')">
+          Harmony Point
+        </button>
+
+        <button type="button" 
+                class="community-btn locked" 
+                (click)="notifyComingSoon('Georgetown')">
+          Georgetown
+        </button>
+
+        <button type="button" 
+                class="community-btn locked" 
+                (click)="notifyComingSoon('Austin')">
+          Austin
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="!selectedCommunity">
+      Save Changes
+    </button>
+  </form>
+</div>
