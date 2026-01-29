@@ -108,4 +108,8 @@ export class SignUpComponent implements OnInit {
     this.showSuccess = false;
     this.router.navigate(['/resources']);
   }
+
+  goToSignInDashboard(): void {
+    this.router.navigate(['/sign-in'])
+  }
 }

@@ -40,6 +40,10 @@ export class Header {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+  goHome() {
+    this.router.navigate(['/'])
+  }
+
   logout() {
     this.toggleDropdown();
     this.authService.logout();
