@@ -39,7 +39,7 @@ export class Resources {
       phone: "(555) 123-4567",
       tags: ["Open to all", "Walk-ins"],
       category: "food",
-      image: "assets/resources_pictures/harmony-kitchen.png"
+      image: "assets/resources_pictures/kitchen.jpg"
     },
 
     {
