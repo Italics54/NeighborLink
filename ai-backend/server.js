@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-require("dotenv").config();
+require("dotenv").config({ path: ".env.local" });
 const OpenAI = require("openai");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -113,13 +113,13 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-https.createServer(
-  {
-    key: fs.readFileSync("./certs/localhost-key.pem"),
-    cert: fs.readFileSync("./certs/localhost.pem"),
-  },
-  app
-).listen(3000, () => console.log("✅ Backend running at https://localhost:3000"));
+// https.createServer(
+//   {
+//     key: fs.readFileSync("./certs/localhost-key.pem"),
+//     cert: fs.readFileSync("./certs/localhost.pem"),
+//   },
+//   app
+// ).listen(3000, () => console.log("✅ Backend running at https://localhost:3000"));
 
 
 app.listen(PORT, () => {
