@@ -9,7 +9,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: "https://localhost:4200"  // Angular dev server
+}));
 app.use(express.json());
 
 const USERS_FILE = "./users.json";
@@ -110,6 +112,14 @@ app.post("/chat", async (req, res) => {
     res.status(500).json({ reply: "Server error" });
   }
 });
+
+https.createServer(
+  {
+    key: fs.readFileSync("./certs/localhost-key.pem"),
+    cert: fs.readFileSync("./certs/localhost.pem"),
+  },
+  app
+).listen(3000, () => console.log("✅ Backend running at https://localhost:3000"));
 
 
 app.listen(PORT, () => {
