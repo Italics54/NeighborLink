@@ -13,6 +13,8 @@ export default async function handler(req, res) {
     console.warn("content.txt not found, continuing without it");
   }
 
+require("dotenv").config({ path: ".env.local" });
+
   const { message } = req.body;
   if (!message || message.trim() === "") {
     return res.status(400).json({ reply: "Message cannot be empty" });
