@@ -52,5 +52,11 @@
     "email": "me@gmail.com",
     "password": "$2b$10$TGfh8E435Y7CpO.9mA0SkOiikxFGS39Y3pbqnQhJiIdhvjudwFeXC",
     "community": "harmonypoint"
+  },
+  {
+    "name": "Community Event Calendar",
+    "email": "z@gmail.com",
+    "password": "$2b$10$13t2jOTWqSOe/yReLkKAoeFsi3pcxtxOuj9ao8GpqYo9lvFPaEySO",
+    "community": "harmonypoint"
   }
 ]
