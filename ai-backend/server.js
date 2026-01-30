@@ -106,6 +106,8 @@ app.post("/chat", async (req, res) => {
     res.json({ reply: response.choices[0].message.content });
   } catch {
     res.status(500).json({ reply: "Server error" });
+    console.log("API Key:", process.env.OPENAI_API_KEY);
+
   }
 });
 
