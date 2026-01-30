@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-require("dotenv").config();
+// require("dotenv").config();
 const OpenAI = require("openai");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
