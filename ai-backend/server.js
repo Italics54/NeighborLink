@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-// require("dotenv").config();
+require("dotenv").config();
 const OpenAI = require("openai");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -83,7 +83,7 @@ let websiteContent = "";
 
 try {
   websiteContent = fs.readFileSync("./content.txt", "utf-8");
-} catch {}
+} catch { }
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -92,22 +92,22 @@ const openai = new OpenAI({
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
 
+  if (!userMessage || userMessage.trim() === "") {
+    return res.status(400).json({ reply: "Message cannot be empty" });
+  }
+
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        {
-          role: "user",
-          content: `${websiteContent}\n\n${userMessage}`
-        }
+        { role: "user", content: `${websiteContent}\n\n${userMessage}` }
       ],
     });
 
-    res.json({ reply: response.choices[0].message.content });
-  } catch {
+    res.json({ reply: response.choices[0]?.message?.content || "No reply from AI" });
+  } catch (error) {
+    console.error("OpenAI API error:", error);
     res.status(500).json({ reply: "Server error" });
-    console.log("API Key:", process.env.OPENAI_API_KEY);
-
   }
 });
 
