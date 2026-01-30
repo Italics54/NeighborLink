@@ -1,16 +1,24 @@
-module.exports = (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
+const fs = require('fs');
+const path = require('path');
 
+module.exports = (req, res) => {
   const { email, password } = req.body || {};
 
-  if (email === 'test@test.com' && password === '123456') {
-    return res.status(200).json({
-      token: 'fake-token',
-      name: 'Test User'
-    });
+  const filePath = path.join(__dirname, 'users.json');
+  const users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+  const user = users.find(
+    u =>
+      u.email.trim() === email.trim() &&
+      u.password.trim() === password.trim()
+  );
+
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  return res.status(401).json({ message: 'Invalid credentials' });
+  res.status(200).json({
+    token: 'fake-token',
+    name: user.name
+  });
 };
