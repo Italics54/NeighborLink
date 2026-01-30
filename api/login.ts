@@ -5,7 +5,7 @@ module.exports = (req, res) => {
 
   const { email, password } = req.body || {};
 
-  if (email === 'test@test.com' && password === '1234') {
+  if (email === 'test@test.com' && password === '123456') {
     return res.status(200).json({
       token: 'fake-token',
       name: 'Test User'
