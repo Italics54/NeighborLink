@@ -41,7 +41,7 @@ export class ChatbotComponent {
     this.loading = true;
 
     this.http.post<{ reply: string }>(
-      'http://localhost:3000/chat',
+      '/api/chat',
       { message: text }
     ).subscribe({
       next: (res) => {
