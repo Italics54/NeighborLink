@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-require("dotenv").config({ path: ".env.local" });
+require("dotenv").config();
 const OpenAI = require("openai");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -9,9 +9,7 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const PORT = 3000;
 
-app.use(cors({
-    origin: "https://localhost:4200"  // Angular dev server
-}));
+app.use(cors());
 app.use(express.json());
 
 const USERS_FILE = "./users.json";
@@ -85,7 +83,7 @@ let websiteContent = "";
 
 try {
   websiteContent = fs.readFileSync("./content.txt", "utf-8");
-} catch { }
+} catch {}
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -94,34 +92,24 @@ const openai = new OpenAI({
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
 
-  if (!userMessage || userMessage.trim() === "") {
-    return res.status(400).json({ reply: "Message cannot be empty" });
-  }
-
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "user", content: `${websiteContent}\n\n${userMessage}` }
+        {
+          role: "user",
+          content: `${websiteContent}\n\n${userMessage}`
+        }
       ],
     });
 
-    res.json({ reply: response.choices[0]?.message?.content || "No reply from AI" });
-  } catch (error) {
-    console.error("OpenAI API error:", error);
+    res.json({ reply: response.choices[0].message.content });
+  } catch {
     res.status(500).json({ reply: "Server error" });
   }
 });
 
-// https.createServer(
-//   {
-//     key: fs.readFileSync("./certs/localhost-key.pem"),
-//     cert: fs.readFileSync("./certs/localhost.pem"),
-//   },
-//   app
-// ).listen(3000, () => console.log("✅ Backend running at https://localhost:3000"));
-
 
 app.listen(PORT, () => {
   console.log(`✅ Backend running at http://localhost:${PORT}`);
-}); 
+});
