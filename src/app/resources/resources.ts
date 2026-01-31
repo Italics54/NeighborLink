@@ -22,7 +22,7 @@ export class Resources {
   resourcesCards: ResourceCard[] = [
 
     /* =================================================
-      🍽 FOOD
+      FOOD
     ================================================= */
 
     {
@@ -61,7 +61,7 @@ export class Resources {
 
 
     /* =================================================
-      🏪 STORE / MARKETS
+      STORE / MARKETS
     ================================================= */
 
     {
@@ -100,7 +100,7 @@ export class Resources {
 
 
     /* =================================================
-      ❤️ HEALTH
+      HEALTH
     ================================================= */
 
     {
@@ -156,7 +156,7 @@ export class Resources {
 
 
     /* =================================================
-      🎓 EDUCATION (Elementary → Middle → High)
+      EDUCATION
     ================================================= */
 
     {
@@ -212,7 +212,7 @@ export class Resources {
 
 
     /* =================================================
-      🌳 PARKS & REC
+      PARKS & REC
     ================================================= */
 
     {
@@ -264,6 +264,22 @@ export class Resources {
       tags: ["Sports", "Late Night"],
       category: "parks",
       image: "assets/resources_pictures/park2.jpg"
+    },
+    {
+      id: 14,
+      title: "Harmony Public Library",
+      subtitle: "Community & Learning Center",
+      specialty: "Library Services",
+      description: "Books, study spaces, and community programs for all ages.",
+      fullDescription: 
+        "HPL offers a wide collection of books, digital resources, quiet study areas, and engaging programs like workshops and reading clubs for the entire community.",
+      
+      address: "200 E Liberty Ave",
+      hours: "9am – 8pm",
+      phone: "(555) 900-READ",
+      tags: ["Library", "Community", "Learning"],
+      category: "education",
+      image: "assets/resources_pictures/library1.jpg"
     }
   ];
 

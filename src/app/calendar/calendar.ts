@@ -30,7 +30,7 @@ export class Calendar {
       date: 'February 16, 2026',
       time: '9:00 AM',
       category: 'Social',
-      location: 'Unity Grove Park'
+      location: 'Heritage Park'
     },
     {
       title: 'Kids Art & Craft Hour',
