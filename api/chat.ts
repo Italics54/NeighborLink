@@ -1,14 +1,6 @@
-import fs from "fs";
-import path from "path";
-import OpenAI from "openai";
-
-let websiteContent = "";
-try {
-  const filePath = path.join(__dirname, "content.txt");
-  websiteContent = fs.readFileSync(filePath, "utf-8");
-} catch (err) {
-  console.error("Could not read content.txt:", err);
-}
+const fs = require("fs");
+const path = require("path");
+const OpenAI = require("openai");
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -16,14 +8,22 @@ const openai = new OpenAI({
 
 const MAX_CONTENT_CHARS = 15000;
 
-export default async (req: any, res: any) => {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const userMessage = (req.body?.message || "").trim();
+  const userMessage = (req.body.message || "").trim();
   if (!userMessage) {
-    return res.status(400).json({ error: "No message provided" });
+    return res.status(400).json({ message: "Message is required" });
+  }
+
+  let websiteContent = "";
+  try {
+    const filePath = path.join(__dirname, "content.txt");
+    websiteContent = fs.readFileSync(filePath, "utf-8");
+  } catch (err) {
+    console.error("Could not read content.txt:", err);
   }
 
   const contentForAI =
@@ -55,16 +55,18 @@ ${userMessage}
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
     });
 
     const reply = response.choices?.[0]?.message?.content || "No reply";
-
-    return res.status(200).json({ reply });
+    res.status(200).json({ reply });
   } catch (err) {
-    console.error("OpenAI API error:", err);
-    return res
-      .status(500)
-      .json({ reply: "Oops! Something went wrong on the server." });
+    console.error("OpenAI call failed:", err);
+    res.status(500).json({ reply: "Server error" });
   }
 };
