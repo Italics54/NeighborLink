@@ -11,17 +11,15 @@ module.exports = async (req, res) => {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { message: userMessage } = req.body || {};
-
+  const userMessage = (req.body.message || "").trim();
   if (!userMessage) {
     return res.status(400).json({ message: "Message is required" });
   }
 
-  // Read website content
   let websiteContent = "";
   try {
     const filePath = path.join(__dirname, "content.txt");
-    websiteContent = fs.readFileSync(filePath, "utf-8");
+    websiteContent = fs.readFileSync(filePath, "utf-8").slice(0, 2000);
   } catch (err) {
     console.error("Error reading content.txt:", err);
   }
@@ -38,10 +36,9 @@ module.exports = async (req, res) => {
     });
 
     const reply = response.choices?.[0]?.message?.content || "No reply";
-
     res.status(200).json({ reply });
   } catch (err) {
-    console.error("OpenAI error:", err);
+    console.error("OpenAI call failed:", err);
     res.status(500).json({ reply: "Server error" });
   }
 };
