@@ -18,7 +18,7 @@
 
         <label>
           <input type="radio" name="category" [(ngModel)]="category" value="food" />
-        🍔 Food & Meals <span class="count-pill">{{ amountOfCategory('food') }}</span>
+          🍔 Food & Meals <span class="count-pill">{{ amountOfCategory('food') }}</span>
         </label>
 
         <label>
@@ -60,34 +60,35 @@
 
       <div class="resource-grid">
         @for (card of resourcesCards; track card) {
-          @if (!category || card.category === category) {
-            <article class="resource-card" (click)="openModal(card)" role="button" tabindex="0">
-              <div class="card-top">
-                <div class="card-titleblock">
-                  <h3>{{ card.title }}</h3>
-                  <p class="muted">{{ card.description }}</p>
-                </div>
-              </div>
+        @if (!category || card.category === category) {
+        <article class="resource-card" (click)="openModal(card)" role="button" tabindex="0">
+          <div class="card-icon">
+            <img src=`${pickMapIcon()}` alt="Icon" />
+          </div>
+          <div class="card-top">
+            <div class="card-titleblock">
+              <h3>{{ card.title }}</h3>
+              <p class="muted">{{ card.description }}</p>
+            </div>
+          </div>
 
-              <ul class="card-meta">
-                <li>📍 {{ card.address }}</li>
-                <li>🕒 {{ card.hours }}</li>
-                <li>📞 {{ card.phone }}</li>
-              </ul>
+          <ul class="card-meta">
+            <li>📍 {{ card.address }}</li>
+            <li>🕒 {{ card.hours }}</li>
+            <li>📞 {{ card.phone }}</li>
+          </ul>
 
-              <div class="tags">
-                <span class="tag" *ngFor="let t of card.tags">{{ t }}</span>
-              </div>
+          <div class="tags">
+            <span class="tag" *ngFor="let t of card.tags">{{ t }}</span>
+          </div>
 
-              <div class="card-actions">
-                <button
-                  class="details-btn"
-                  (click)="$event.stopPropagation(); openModal(card)">
-                  View Details →
-                </button>
-              </div>
-            </article>
-          }
+          <div class="card-actions">
+            <button class="details-btn" (click)="$event.stopPropagation(); openModal(card)">
+              View Details →
+            </button>
+          </div>
+        </article>
+        }
         }
       </div>
 
@@ -100,46 +101,46 @@
   </section>
 </div>
 @if (selectedCard) {
-  <div class="modal-backdrop" (click)="closeModal()">
-    <div class="profile-modal" (click)="$event.stopPropagation()">
+<div class="modal-backdrop" (click)="closeModal()">
+  <div class="profile-modal" (click)="$event.stopPropagation()">
 
-      <div class="profile-image">
-        <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" />
-        <div class="image-overlay"></div>
+    <div class="profile-image">
+      <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" />
+      <div class="image-overlay"></div>
+    </div>
+
+    <div class="profile-content">
+      <button class="close-btn" (click)="closeModal()" aria-label="Close">✕</button>
+
+      <div class="modal-header">
+        <h2>{{ selectedCard.title }}</h2>
+        <p class="subtitle">{{ selectedCard.subtitle }}</p>
       </div>
 
-      <div class="profile-content">
-        <button class="close-btn" (click)="closeModal()" aria-label="Close">✕</button>
+      <div class="highlight">
+        {{ selectedCard.specialty }}
+      </div>
 
-        <div class="modal-header">
-          <h2>{{ selectedCard.title }}</h2>
-          <p class="subtitle">{{ selectedCard.subtitle }}</p>
-        </div>
+      <p class="description">
+        {{ selectedCard.fullDescription }}
+      </p>
 
-        <div class="highlight">
-          {{ selectedCard.specialty }}
-        </div>
+      <div class="divider"></div>
 
-        <p class="description">
-          {{ selectedCard.fullDescription }}
-        </p>
+      <ul class="details">
+        <li><span class="dot">📍</span> {{ selectedCard.address }}</li>
+        <li><span class="dot">🕒</span> {{ selectedCard.hours }}</li>
+        <li><span class="dot">📞</span> {{ selectedCard.phone }}</li>
+      </ul>
 
-        <div class="divider"></div>
-
-        <ul class="details">
-          <li><span class="dot">📍</span> {{ selectedCard.address }}</li>
-          <li><span class="dot">🕒</span> {{ selectedCard.hours }}</li>
-          <li><span class="dot">📞</span> {{ selectedCard.phone }}</li>
-        </ul>
-
-        <div class="modal-actions">
-          <a [href]="getGoogleMapsUrl()" target="_blank">
-            <button class="secondary-btn">Directions</button>
-          </a>
-        </div>
-
+      <div class="modal-actions">
+        <a [href]="getGoogleMapsUrl()" target="_blank">
+          <button class="secondary-btn">Directions</button>
+        </a>
       </div>
 
     </div>
+
   </div>
+</div>
 }

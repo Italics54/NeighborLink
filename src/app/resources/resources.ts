@@ -314,4 +314,27 @@ export class Resources {
   closeModal() {
     this.selectedCard = null;
   }
+
+  pickMapIcon() {
+    const currentCategory = this.selectedCard.category;
+    if (currentCategory === 'food') {
+      return "assets/map_icons/food icon.svg"
+
+    } else if (currentCategory === 'education') {
+      return this.selectedCard.title.includes("Library") ? "assets/map_icons/libr icon.svg" : "assets/map_icons/edu icon.svg";
+
+    } else if (currentCategory=== 'parks') {
+      return this.selectedCard.title.includes('Center') ? "assets/map_icons/play icon.svg" : "assets/map_icons/play icon.svg";
+
+    } else if (currentCategory === 'health') {
+      return "assets/map_icons/heart icon.svg";
+
+    } else if (currentCategory === 'store') {
+      return "assets/map_icons/mar icon.svg";
+
+    }
+
+    return "assets/map_icons/bus icon.svg";;
+  }
+
 }
