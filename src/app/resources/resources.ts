@@ -317,7 +317,8 @@ export class Resources {
 
   pickMapIcon() {
     const currentCategory = this.selectedCard.category;
-    if (currentCategory === 'food') {
+    console.log('hey', currentCategory)
+    if (currentCategory === "food") {
       return "assets/map_icons/food icon.svg"
 
     } else if (currentCategory === 'education') {
