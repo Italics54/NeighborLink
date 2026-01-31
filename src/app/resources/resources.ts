@@ -315,17 +315,16 @@ export class Resources {
     this.selectedCard = null;
   }
 
-  pickMapIcon() {
-    const currentCategory = this.selectedCard.category;
-    console.log('hey', currentCategory)
+  pickMapIcon(card: ResourceCard) {
+    const currentCategory = card.category;
     if (currentCategory === "food") {
       return "assets/map_icons/food icon.svg"
 
     } else if (currentCategory === 'education') {
-      return this.selectedCard.title.includes("Library") ? "assets/map_icons/libr icon.svg" : "assets/map_icons/edu icon.svg";
+      return card.title.includes("Library") ? "assets/map_icons/libr icon.svg" : "assets/map_icons/edu icon.svg";
 
     } else if (currentCategory=== 'parks') {
-      return this.selectedCard.title.includes('Center') ? "assets/map_icons/play icon.svg" : "assets/map_icons/play icon.svg";
+      return card.title.includes('Center') ? "assets/map_icons/play icon.svg" : "assets/map_icons/play icon.svg";
 
     } else if (currentCategory === 'health') {
       return "assets/map_icons/heart icon.svg";

@@ -63,7 +63,7 @@
         @if (!category || card.category === category) {
         <article class="resource-card" (click)="openModal(card)" role="button" tabindex="0">
           <div class="card-icon">
-            <img [src]="pickMapIcon()" alt="Icon" />
+            <img [src]="pickMapIcon(card)" alt="Icon" />
           </div>
           <div class="card-top">
             <div class="card-titleblock">
