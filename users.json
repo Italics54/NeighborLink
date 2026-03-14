@@ -58,5 +58,17 @@
     "email": "z@gmail.com",
     "password": "$2b$10$13t2jOTWqSOe/yReLkKAoeFsi3pcxtxOuj9ao8GpqYo9lvFPaEySO",
     "community": "harmonypoint"
+  },
+  {
+    "name": "Hey",
+    "email": "hehey@123.com",
+    "password": "$2b$10$oYIL2gmDE0mWAdAYM1Hqoe/6lskWA.qnHbUmzeFHDQUpFDcab1/sS",
+    "community": "harmonypoint"
+  },
+  {
+    "name": "Test",
+    "email": "123@test.com",
+    "password": "$2b$10$OOhpTGrbz55QhwPsjTI7qOZAl4FaUqEvzPjh3TS0EcyWl1vREI73a",
+    "community": "harmonypoint"
   }
 ]

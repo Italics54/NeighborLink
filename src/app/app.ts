@@ -5,6 +5,7 @@ import { Footer } from './footer/footer';
 import { ChatbotComponent } from './chatbot/chatbot';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Welcome } from "./welcome/welcome";
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,11 @@ import { FormsModule } from '@angular/forms';
     Footer,
     ChatbotComponent,
     CommonModule,
-    FormsModule
-  ],
+    FormsModule,
+    Welcome
+],
   template: `
+    <app-welcome></app-welcome>
     <app-header></app-header>
     <router-outlet></router-outlet>
 

@@ -1,0 +1,134 @@
+/* BACKDROP */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(250, 248, 255, 0.7);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.intro-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* MODAL CARD */
+.intro-modal {
+  max-width: 620px;
+  width: 90%;
+
+  background: #fff;
+  border-radius: 22px;
+
+  padding: 44px 48px;
+
+  border: 1px solid rgba(139, 77, 232, 0.16);
+
+  box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+
+  text-align: center;
+
+  transform: translateY(25px) scale(0.96);
+  transition: transform 0.45s ease;
+
+  animation: fadeUp 0.6s ease;
+}
+
+.intro-overlay.show .intro-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* HEADER */
+.intro-modal h2 {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+/* SUBTITLE */
+.intro-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* FEATURE LIST */
+.intro-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.intro-feature {
+  background: #fafafa;
+  padding: 16px 18px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(139, 77, 232, 0.12);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.intro-feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 77, 232, 0.3);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+/* BUTTON */
+.intro-btn {
+  background: #8b4de8;
+  color: #fff;
+
+  border: none;
+  border-radius: 999px;
+
+  padding: 14px 36px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.intro-btn:hover {
+  background: #7436d8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(139, 77, 232, 0.45);
+}
+
+/* SMALL PILL LABEL */
+.intro-pill {
+  display: inline-block;
+
+  padding: 6px 14px;
+
+  background: #efe7fb;
+  color: #8b4de8;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  margin-bottom: 16px;
+
+  animation: pulse 2.5s infinite;
+}
