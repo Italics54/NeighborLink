@@ -1,50 +1,35 @@
-const fs = require('fs');
-const bcrypt = require('bcrypt');
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { supabase } from "../lib/supabase";
 
-
-module.exports = async (req, res) => {
-  if (req.method !== "POST") {
-    return res.status(405).end();
-  }
-
-  const USERS_FILE = "./users.json";
-
-  function readUsers() {
-    return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
-  }
-
-  function saveUsers(users) {
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
-  }
-
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
+    if (req.method !== "POST")
+      return res.status(405).json({ message: "Method not allowed" });
+
     const { name, email, password, community } = req.body;
 
-    const users = readUsers();
+    if (!name || !email || !password || !community)
+      return res.status(400).json({ message: "All fields are required" });
 
-    const existing = users.find(u => u.email === email);
+    const { data, error } = await supabase.auth.signUp({ email, password });
 
-    if (existing) {
-      return res.status(400).json({ message: "Email already exists" });
+    if (error || !(email.includes('.com'))) return res.status(400).json({ message: error?.message });
+
+    if (data.user?.id) {
+      await supabase.from("profiles").insert({
+        id: data.user.id,
+        name,
+        community
+      });
     }
 
-    const hashed = await bcrypt.hash(password, 10);
-
-    users.push({
-      name,
-      email,
-      password: hashed,
-      community
-    });
-
-    saveUsers(users);
-
     res.status(200).json({
-      message: "User created successfully",
+      token: data.session?.access_token ?? null,
+      name
     });
-  } catch (err) {
-    res.status(500).json({
-      message: `Server error`,
-    });
+
+  } catch (err: any) {
+    console.error("Signup error:", err);
+    res.status(500).json({ message: "Internal server error", error: err.message });
   }
-};
+}

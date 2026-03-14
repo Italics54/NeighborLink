@@ -99,7 +99,7 @@ export class SignUpComponent implements OnInit {
       },
       error: err => {
         this.loading = false;
-        this.errorMsg = err.error?.message || 'Signup failed';
+        this.errorMsg = err.error?.message || 'Signup failed! Check all fields.';
       }
     });
   }

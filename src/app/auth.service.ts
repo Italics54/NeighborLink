@@ -22,16 +22,11 @@ export class AuthService {
     }
   }
 
-  signup(data: {
-    name: string;
-    email: string;
-    password: string;
-    community: string;
-  }) {
+  signup(data: { name: string; email: string; password: string; community: string }) {
     return this.http.post<{ token: string; name: string }>(`${this.apiUrl}/signup`, data)
       .pipe(
         tap(res => {
-          localStorage.setItem('token', res.token);
+          if (res.token) localStorage.setItem('token', res.token);
           this.loggedIn.next(true);
           this.username.next(res.name);
         })
@@ -40,11 +35,7 @@ export class AuthService {
 
 
   login(email: string, password: string) {
-    return this.http
-      .post<{ token: string; name: string }>(`${this.apiUrl}/login`, {
-        email,
-        password
-      })
+    return this.http.post<{ token: string; name: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap(res => {
           localStorage.setItem('token', res.token);
