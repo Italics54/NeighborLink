@@ -1,23 +1,46 @@
 <div class="intro-overlay" [class.show]="showModal">
   <div class="intro-modal">
 
-    <div class="intro-pill">WELCOME</div>
+    <div class="intro-pill">Quick Tour</div>
 
-    <h2 class="gradient-text">How NeighborLink Works</h2>
+    <h2 class="gradient-text">
+      {{ steps[currentStep].title }}
+    </h2>
 
     <p class="intro-text">
-      Find local resources, events, and services in seconds.
+      {{ steps[currentStep].text }}
     </p>
 
-    <div class="intro-features">
-      <div class="intro-feature">🔎 Search for nearby resources</div>
-      <div class="intro-feature">📅 Discover community events</div>
-      <div class="intro-feature">🤝 Connect with local services</div>
-      <div class="intro-feature">⚡ AI powered recommendations</div>
+    <div class="demo-container">
+
+      <video #demoVideo [src]="steps[currentStep].media" autoplay muted loop playsinline class="demo-video">
+      </video>
+
     </div>
 
-    <button class="intro-btn" (click)="closeModal()">
-      Got it
+    <div class="dots">
+      <span *ngFor="let step of steps; let i = index" [class.active]="i === currentStep">
+      </span>
+    </div>
+
+    <div class="controls">
+
+      <button class="intro-secondary" *ngIf="currentStep > 0" (click)="prevStep()">
+        Back
+      </button>
+
+      <button class="intro-btn" (click)="nextStep()">
+
+        {{ currentStep === steps.length - 1
+        ? 'Start Exploring'
+        : 'Next' }}
+
+      </button>
+
+    </div>
+
+    <button class="skip-tour" (click)="closeModal()">
+      Skip Tour
     </button>
 
   </div>
