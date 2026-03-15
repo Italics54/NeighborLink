@@ -6,6 +6,7 @@ import { ChatbotComponent } from './chatbot/chatbot';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Welcome } from "./welcome/welcome";
+import { StartTour } from "./start-tour/start-tour";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { Welcome } from "./welcome/welcome";
     ChatbotComponent,
     CommonModule,
     FormsModule,
-    Welcome
+    Welcome,
+    StartTour
 ],
   template: `
     <app-welcome></app-welcome>
@@ -25,6 +27,7 @@ import { Welcome } from "./welcome/welcome";
     <router-outlet></router-outlet>
 
     <app-chatbot></app-chatbot>
+    <app-start-tour></app-start-tour>
 
     <app-footer></app-footer>
   `,
