@@ -22,12 +22,16 @@ import { StartTour } from "./start-tour/start-tour";
     StartTour
 ],
   template: `
-    <app-welcome></app-welcome>
-    <app-header></app-header>
-    <router-outlet></router-outlet>
-
     <app-chatbot></app-chatbot>
     <app-start-tour></app-start-tour>
+
+    <app-welcome></app-welcome>
+
+    <app-header></app-header>
+    
+    <router-outlet></router-outlet>
+
+
 
     <app-footer></app-footer>
   `,
