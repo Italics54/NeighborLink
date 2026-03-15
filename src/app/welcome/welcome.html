@@ -7,8 +7,8 @@
       {{ steps[currentStep].title }}
     </h2>
 
-    <p class="intro-text">
-      {{ steps[currentStep].text }}
+    <p class="intro-text" *ngFor="let line of steps[currentStep].text">
+      {{ line }}
     </p>
 
     <div class="demo-container">
