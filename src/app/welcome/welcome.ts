@@ -46,7 +46,7 @@ export class Welcome implements OnInit {
     },  
     {
       title: 'Submit a Resource',
-      text:  [`Don't want to gatekeep? Submit a resource to help our people in your community`],
+      text:  [`Don't want to gatekeep? Submit a resource to help people in your community`],
       media: '/assets/onboarding/submit.mp4',
       type: 'video'
     },
