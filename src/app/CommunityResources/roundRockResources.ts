@@ -13,7 +13,7 @@ export const RoundRockresourcesCards: ResourceCard[] = [
         specialty: "Meal service",
         description: "Swing by for a warm plate and a friendly chat.",
         fullDescription:
-            "Harmony House Kitchen provides hot, nutritious meals daily in a welcoming, no-questions-asked environment where everyone is welcome.",
+            "Home Kitchen provides hot, nutritious meals daily in a welcoming, no-questions-asked environment where everyone is welcome.",
 
         address: "2471 AW Grimes Blvd, Round Rock, TX 78664",
         hours: "Tues - Sun: 7am – 3pm",

@@ -16,3 +16,10 @@ export interface ResourceCard {
   specialty: string;
   image: string;
 }
+
+export interface HomeEvent {
+  title: string,
+  time: string,
+  location: string,
+  category: string
+}
