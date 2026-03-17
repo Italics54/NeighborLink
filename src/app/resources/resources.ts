@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ResourceCard } from './utils'
 import { FormsModule } from '@angular/forms';
 import { RoundRockresourcesCards } from '../CommunityResources/roundRockResources'
+import { GeorgetownResourcesCards } from '../CommunityResources/GeorgetownResources';
 
 @Component({
   selector: 'app-resources',
@@ -16,7 +17,14 @@ export class Resources {
 
   category: string | null = null;
   selectedCard: any = null;
-  resourcesCards: ResourceCard[] = RoundRockresourcesCards;
+  resourcesCards: ResourceCard[] = this.communityResourcePack();
+
+  communityResourcePack(): ResourceCard[] {
+    const communityValue = localStorage.getItem('Community')
+    if (communityValue === 'harmonypoint') return RoundRockresourcesCards
+    if (communityValue === 'georgetown') return GeorgetownResourcesCards
+    return []
+  }
 
 
 

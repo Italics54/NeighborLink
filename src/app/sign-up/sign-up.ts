@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   errorMsg = '';
   loading = false;
 
-  restrictedCommunities = ['georgetown', 'austin'];
+  restrictedCommunities = ['austin'];
   communityWarning = '';
 
   constructor(

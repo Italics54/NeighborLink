@@ -26,16 +26,19 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
     }
 
     if (data.user?.id) {
-      await supabase.from("profiles").insert({
+      await supabase.from("users").insert({
         id: data.user.id,
         name,
+        email,
+        password,
         community
       });
     }
 
     res.status(200).json({
       token: data.session?.access_token ?? null,
-      name
+      name,
+      community: community
     });
   } catch (err: any) {
     console.error("Signup error:", err);

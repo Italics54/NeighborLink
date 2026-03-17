@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.css']
 })
 export class Settings {
-  selectedCommunity: string | null = null;
+  selectedCommunity: string = '';
+  currentCommunityValue: string = '';
 
   selectCommunity(name: string) {
     this.selectedCommunity = name;
@@ -16,8 +17,17 @@ export class Settings {
     alert(`${name} community page is coming soon!`);
   }
 
-  saveCommunity(event: Event) {
-    event.preventDefault();
+  ngOnInit() {
+    this.currentCommunityValue = localStorage.getItem('Community') || '';
+    this.selectedCommunity = this.currentCommunityValue;
+  }
+
+  saveCommunity() {
     if (!this.selectedCommunity) return;
+    localStorage.setItem('Community', this.selectedCommunity);
+    this.currentCommunityValue = this.selectedCommunity;
+
+    window.location.reload();
+
   }
 }

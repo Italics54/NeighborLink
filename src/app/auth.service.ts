@@ -28,6 +28,7 @@ export class AuthService {
         tap(res => {
           if (res.token) localStorage.setItem('token', res.token);
           this.loggedIn.next(true);
+          localStorage.setItem('Community', data.community)
           this.username.next(res.name);
         })
       );
@@ -35,11 +36,12 @@ export class AuthService {
 
 
   login(email: string, password: string) {
-    return this.http.post<{ token: string; name: string }>(`${this.apiUrl}/login`, { email, password })
+    return this.http.post<{ token: string; name: string, community: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap(res => {
           localStorage.setItem('token', res.token);
           this.loggedIn.next(true);
+          localStorage.setItem('Community', res.community)
           this.username.next(res.name);
         })
       );
@@ -50,6 +52,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.loggedIn.next(false);
     this.username.next(null);
+    localStorage.removeItem('Community')
   }
 
   isLoggedIn(): boolean {
