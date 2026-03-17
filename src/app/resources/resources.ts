@@ -21,7 +21,7 @@ export class Resources {
 
   communityResourcePack(): ResourceCard[] {
     const communityValue = localStorage.getItem('Community')
-    if (communityValue === 'harmonypoint') return RoundRockresourcesCards
+    if (communityValue === 'roundrock') return RoundRockresourcesCards
     if (communityValue === 'georgetown') return GeorgetownResourcesCards
     return []
   }
