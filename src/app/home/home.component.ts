@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
-import { RoundRockEvents } from '../CommunityEvents/roundRockEvents';
+import { RoundRockEvents } from '../Round Rock/roundRockEvents';
 import { HomeEvent } from '../resources/utils';
 
 

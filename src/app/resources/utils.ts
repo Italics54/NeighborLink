@@ -23,3 +23,11 @@ export interface HomeEvent {
   location: string,
   category: string
 }
+
+export interface CalendarEvent {
+  title: string,
+  date: string,
+  time: string,
+  category: string,
+  location: string
+}
