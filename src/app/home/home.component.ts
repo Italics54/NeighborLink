@@ -3,6 +3,9 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { RoundRockEvents } from '../Round Rock/roundRockEvents';
+import { GeorgetownEvents } from '../Georgetown/georgetownEvents';
+import { RoundRockTodaysEvents } from '../Round Rock/roundRockCalendar';
+import { GeorgetownTodaysEvents } from '../Georgetown/georgetownCalendar';
 import { HomeEvent } from '../resources/utils';
 
 
@@ -17,6 +20,7 @@ export class HomeComponent {
 
   isLoggedIn = false;
   username: string | null = null;
+  currentDay: string = (localStorage.getItem('Community') === 'roundrock') ? RoundRockTodaysEvents[0].date: GeorgetownTodaysEvents[0].date
   showModal = false;
   events = this.currentEvents()
 
@@ -27,6 +31,7 @@ export class HomeComponent {
 
   currentEvents(): HomeEvent[] {
     if (localStorage.getItem('Community') === 'roundrock') return RoundRockEvents
+    if (localStorage.getItem('Community') === 'georgetown') return GeorgetownEvents
     return []
   }
 
@@ -46,5 +51,17 @@ export class HomeComponent {
   }
     goToCalendar() {
     this.router.navigate(['/calendar']);
+  }
+
+  getDayFromDate(currentDay: string): string {
+    const dateString: string = currentDay;
+    const date: Date = new Date(dateString);
+
+    const dayIndex: number = date.getDay();
+
+    const days: string[] = [
+      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    return days[dayIndex]
   }
 }

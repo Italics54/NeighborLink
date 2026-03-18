@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResourceCard } from './utils'
 import { FormsModule } from '@angular/forms';
-import { RoundRockresourcesCards } from '../CommunityResources/roundRockResources'
-import { GeorgetownResourcesCards } from '../CommunityResources/GeorgetownResources';
+import { RoundRockresourcesCards } from '../Round Rock/roundRockResources'
+import { GeorgetownResourcesCards } from '../Georgetown/GeorgetownResources';
 
 @Component({
   selector: 'app-resources',

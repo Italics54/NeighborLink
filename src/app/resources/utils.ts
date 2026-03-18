@@ -21,7 +21,6 @@ export interface HomeEvent {
   title: string,
   time: string,
   location: string,
-  category: string
 }
 
 export interface CalendarEvent {

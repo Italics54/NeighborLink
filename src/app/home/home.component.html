@@ -130,11 +130,11 @@
 <section class="events" *ngIf="isLoggedIn">
   <span class="section-pill">DAILY EVENTS FEED</span>
   <h2>What's Happening Today</h2>
-  <p class="date">Saturday, February 7, 2026</p>
+  <p class="date">{{ getDayFromDate(currentDay) }}, {{ currentDay }}</p>
 
   <div class="event-list">
     @for (event of events; track event) {
-      <div class="event" [ngClass]="event.category">
+      <div class="event">
         <h4>{{ event.title }}</h4>
         <span>{{ event.time }} {{ event.location }}</span>
         <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
