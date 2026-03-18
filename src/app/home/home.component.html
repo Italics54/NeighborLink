@@ -53,7 +53,7 @@
   </div>
 </main>
 
-<section class="featured">
+<section class="featured" *ngIf="!isLoggedIn">
   <span class="section-pill">WHAT WE OFFER</span>
   <h2>Featured Resources</h2>
   <p class="section-subtitle">
@@ -127,6 +127,34 @@
     </div>
   </div>
 </section>
+
+<section class="featured" *ngIf="isLoggedIn">
+  <span class="section-pill">FOR YOU</span>
+  <h2>Recommended Resources</h2>
+  <p class="section-subtitle">
+    In {{ selectedCommunity }}, here are some of the best resources available to you right now.
+  </p>
+
+  <div class="resource-grid">
+
+    <div 
+      class="resource-card"
+      *ngFor="let resource of featuredResources"
+      (click)="goToResources()"
+    >
+      <div class="icon">
+        {{ getIcon(resource.category) }}
+      </div>
+
+      <h3>{{ resource.title }}</h3>
+      <p>{{ resource.description }}</p>
+
+      <button class="learn-more-btn" (click)="goToResources(); $event.stopPropagation()">
+        View resources
+      </button>
+    </div>
+    </div>
+</section>
 <section class="events" *ngIf="isLoggedIn">
   <span class="section-pill">DAILY EVENTS FEED</span>
   <h2>What's Happening Today</h2>
@@ -134,11 +162,11 @@
 
   <div class="event-list">
     @for (event of events; track event) {
-      <div class="event">
-        <h4>{{ event.title }}</h4>
-        <span>{{ event.time }} {{ event.location }}</span>
-        <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
-      </div>
+    <div class="event">
+      <h4>{{ event.title }}</h4>
+      <span>{{ event.time }} {{ event.location }}</span>
+      <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
+    </div>
     }
   </div>
 

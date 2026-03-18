@@ -6,7 +6,9 @@ import { RoundRockEvents } from '../Round Rock/roundRockEvents';
 import { GeorgetownEvents } from '../Georgetown/georgetownEvents';
 import { RoundRockTodaysEvents } from '../Round Rock/roundRockCalendar';
 import { GeorgetownTodaysEvents } from '../Georgetown/georgetownCalendar';
-import { HomeEvent } from '../resources/utils';
+import { HomeEvent, ResourceCard } from '../resources/utils';
+import { RoundRockresourcesCards } from '../Round Rock/roundRockResources';
+import { GeorgetownResourcesCards } from '../Georgetown/GeorgetownResources';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class HomeComponent {
   currentDay: string = (localStorage.getItem('Community') === 'roundrock') ? RoundRockTodaysEvents[0].date: GeorgetownTodaysEvents[0].date
   showModal = false;
   events = this.currentEvents()
+  selectedCommunity = localStorage.getItem('Community') === 'roundrock' ? 'Round Rock' : 'Georgetown'
 
   constructor(private router: Router, private authService: AuthService) {
     this.authService.loggedIn$.subscribe(status => this.isLoggedIn = status);
@@ -34,6 +37,29 @@ export class HomeComponent {
     if (localStorage.getItem('Community') === 'georgetown') return GeorgetownEvents
     return []
   }
+
+  currentResources(): ResourceCard[] {
+    if (localStorage.getItem('Community') === 'roundrock') return RoundRockresourcesCards 
+    if (localStorage.getItem('Community') === 'georgetown') return GeorgetownResourcesCards
+    return []
+  }
+
+  getIcon(category: string): string {
+  switch (category) {
+    case 'food': return '🍽️';
+    case 'health': return '🩺';
+    case 'education': return '📚';
+    case 'parks': return '🌳';
+    case 'store': return '🛒';
+    default: return '📍';
+  }
+}
+
+featuredResources = [
+  this.currentResources()[0],
+  this.currentResources()[2],
+  this.currentResources()[4]
+];
 
   goToSignInDashboard() {
     this.router.navigate(['/sign-in']);
