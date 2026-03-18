@@ -4,6 +4,7 @@ export interface Story {
   category: string;
   description: string;
   content: string;
+  community: string;
   comments: { user: string; text: string }[],
 }
 
@@ -12,6 +13,7 @@ export const STORIES: Story[] = [
   id: "neighborhood-book-swap",
   title: "Neighborhood Book Swap",
   category: "Community",
+  community: "Round Rock",
   description: "Families gathered at the community center to exchange books, encouraging young readers and giving stories a second life.",
   content: `
     <p>The community center hosted a book swap where families brought gently used books to share with others. Tables were lined with colorful covers, classic stories, and brand-new adventures waiting to be discovered by readers of all ages.</p>
@@ -32,6 +34,7 @@ export const STORIES: Story[] = [
   id: "community-garden-harvest",
   title: "Community Garden Harvest Day",
   category: "Sustainability",
+    community: "Round Rock",
   description: "Volunteers harvested fresh vegetables and donated baskets of produce to local families and food pantries.",
   content: `
     <p>Neighbors gathered at the community garden to harvest fresh vegetables grown throughout the season. Rows of tomatoes, peppers, carrots, and leafy greens were carefully picked as volunteers worked together under the warm sunlight.</p>
@@ -52,6 +55,7 @@ export const STORIES: Story[] = [
   id: "bike-safety-day",
   title: "Bike Safety Day",
   category: "Wellness",
+  community: "Round Rock",
   description: "Local officers and volunteers taught kids road safety skills and gave away free helmets and reflective gear.",
   content: `
     <p>Bike Safety Day brought families together to learn important road rules and safe riding habits. Local officers and volunteers welcomed everyone and explained the purpose of the event.</p>
@@ -72,6 +76,7 @@ export const STORIES: Story[] = [
   id: "kindness-wall",
   title: "The Kindness Wall",
   category: "Culture",
+  community: "Round Rock",
   description: "Students created a public wall filled with positive notes, inspiring messages, and artwork for everyone to enjoy.",
   content: `
     <p>The Kindness Wall was designed by local students as a space to share encouraging words and colorful artwork. Bright paint, handwritten notes, and creative drawings filled the wall with positive energy.</p>
@@ -92,6 +97,7 @@ export const STORIES: Story[] = [
   id: "pet-adoption-fair",
   title: "Pet Adoption Fair",
   category: "Community",
+  community: "Round Rock",
   description: "Local shelters helped over 20 pets find new homes during a joyful weekend adoption event.",
   content: `
     <p>The pet adoption fair welcomed families to meet animals from local shelters who were looking for loving homes. Tents and booths were set up to introduce visitors to dogs, cats, and other small pets.</p>
@@ -112,6 +118,7 @@ export const STORIES: Story[] = [
   id: "outdoor-movie-night",
   title: "Outdoor Movie Night",
   category: "Culture",
+  community: "Round Rock",
   description: "Families gathered with blankets and snacks for a free movie screening under the stars at the town park.",
   content: `
     <p>The town park turned into an open-air theater as families arrived with blankets, chairs, and baskets of snacks. Soft music played in the background as people found their spots on the grass.</p>
@@ -132,6 +139,7 @@ export const STORIES: Story[] = [
   id: "youth-art-showcase",
   title: "Youth Art Showcase",
   category: "Education",
+  community: "Round Rock",
   description: "Young artists displayed paintings, sculptures, and digital art at the community hall, celebrating creativity.",
   content: `
     <p>The Youth Art Showcase highlighted the creativity of local students through paintings, sculptures, and digital art displayed throughout the community hall.</p>
@@ -152,6 +160,28 @@ export const STORIES: Story[] = [
   id: "thank-you-volunteers-day",
   title: "Thank You, Volunteers Day",
   category: "Community",
+  community: "Round Rock",
+  description: "The city hosted a small celebration to recognize residents who give their time to help schools, parks, and local programs.",
+  content: `
+    <p>The community came together to honor volunteers who dedicate their time to helping schools, parks, and neighborhood programs.</p>
+    <p>Speakers shared stories about how these efforts have improved classrooms, cleaned up public spaces, and supported local families.</p>
+    <p>Volunteers were invited to stand and be recognized, receiving applause and kind words from neighbors and city leaders.</p>
+    <p>A display board showcased photos from past events, highlighting moments of teamwork and community pride.</p>
+    <p>Thank-you cards and small gifts were handed out as a token of appreciation for the many hours of service given.</p>
+    <p>The day ended with warm conversations, group photos, and a reminder of how powerful a caring community can be.</p>
+  `,
+  comments: [
+    { user: "Janet", text: "Felt so appreciated toda." },
+    { user: "Kareem", text: "Volunteering is always worth it" },
+    { user: "Laura", text: "Such a thoughtful event" },
+    { user: "Ben", text: "Proud to be part of this community" }
+  ]
+},
+{
+  id: "thank-you-volunteers-day",
+  title: "Thank You, Volunteers Day",
+  category: "Community",
+  community: "Georgetown",
   description: "The city hosted a small celebration to recognize residents who give their time to help schools, parks, and local programs.",
   content: `
     <p>The community came together to honor volunteers who dedicate their time to helping schools, parks, and neighborhood programs.</p>
