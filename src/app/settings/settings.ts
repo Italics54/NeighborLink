@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,6 +9,13 @@ import { Component } from '@angular/core';
 export class Settings {
   selectedCommunity: string = '';
   currentCommunityValue: string = '';
+  userName: string | null = null;
+  userEmail: string | null = null;
+
+  constructor(private authService: AuthService) {
+    this.authService.userEmail$.subscribe(userEmail => this.userEmail = userEmail);
+    this.authService.username$.subscribe(name => this.userName = name);
+  }
 
   selectCommunity(name: string) {
     this.selectedCommunity = name;

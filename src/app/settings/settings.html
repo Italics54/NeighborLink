@@ -4,6 +4,16 @@
   <p class="subtitle">
     Select the community you want to join. Some communities are not available yet.
   </p>
+  
+  <div class="user-box">
+    <div class="avatar">
+      {{ userName?.charAt(0) || 'U' }}
+    </div>
+    <div class="user-details">
+      <h3>{{ userName }}</h3>
+      <p>{{ userEmail }}</p>
+    </div>
+  </div>
 
   <form class="resource-form">
     <div class="form-group">

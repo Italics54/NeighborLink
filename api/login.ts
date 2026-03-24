@@ -33,7 +33,7 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
 
     res.status(200).json({
       token: data.session.access_token,
-      name: data.user?.user_metadata?.name ?? "User",
+      name: userData.name ?? "User",
       community: userData.community
     });
   } catch (err: any) {

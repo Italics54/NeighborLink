@@ -15,6 +15,10 @@ export class AuthService {
   private username = new BehaviorSubject<string | null>(null);
   username$ = this.username.asObservable();
 
+  private userEmail = new BehaviorSubject<string | null>(null);
+  userEmail$ = this.userEmail.asObservable();
+
+
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
@@ -43,6 +47,7 @@ export class AuthService {
           this.loggedIn.next(true);
           localStorage.setItem('Community', res.community)
           this.username.next(res.name);
+          this.userEmail.next(email)
         })
       );
   }
