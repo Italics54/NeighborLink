@@ -34,6 +34,8 @@ export class AuthService {
           this.loggedIn.next(true);
           localStorage.setItem('Community', data.community)
           this.username.next(res.name);
+          localStorage.setItem('userName', res.name)
+          localStorage.setItem('userEmail', data.email)
         })
       );
   }
@@ -48,6 +50,9 @@ export class AuthService {
           localStorage.setItem('Community', res.community)
           this.username.next(res.name);
           this.userEmail.next(email)
+
+          localStorage.setItem('userName', res.name)
+          localStorage.setItem('userEmail', email)
         })
       );
   }
@@ -58,6 +63,18 @@ export class AuthService {
     this.loggedIn.next(false);
     this.username.next(null);
     localStorage.removeItem('Community')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userEmail')
+  }
+
+  setCommunity(userId: string | null, community: string | null) {
+    return this.http.post<{ message: string; community: string }>(`${this.apiUrl}/setCommunity`, {userId, community})
+      .pipe(
+        tap(res => {
+          console.log(res.message)
+          localStorage.setItem('Community', res.community);
+        })
+      );
   }
 
   isLoggedIn(): boolean {

@@ -9,13 +9,10 @@ import { AuthService } from '../auth.service';
 export class Settings {
   selectedCommunity: string = '';
   currentCommunityValue: string = '';
-  userName: string | null = null;
-  userEmail: string | null = null;
+  userName: string | null = localStorage.getItem('userName');
+  userEmail: string | null = localStorage.getItem('userEmail');
 
-  constructor(private authService: AuthService) {
-    this.authService.userEmail$.subscribe(userEmail => this.userEmail = userEmail);
-    this.authService.username$.subscribe(name => this.userName = name);
-  }
+  constructor(private authService: AuthService) {}
 
   selectCommunity(name: string) {
     this.selectedCommunity = name;
@@ -32,10 +29,12 @@ export class Settings {
 
   saveCommunity() {
     if (!this.selectedCommunity) return;
-    localStorage.setItem('Community', this.selectedCommunity);
-    this.currentCommunityValue = this.selectedCommunity;
-
-    window.location.reload();
+    this.authService.setCommunity(this.userEmail, this.selectedCommunity).subscribe({
+      next: () => {
+        window.location.reload();
+      }
+    })
+    this.currentCommunityValue = this.selectedCommunity; 
 
   }
 }
