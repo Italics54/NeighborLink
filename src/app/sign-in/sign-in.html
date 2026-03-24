@@ -5,6 +5,16 @@
     Access your account to continue. Enter your credentials below.
   </div>
 
+  <div class="demo-credentials">
+    <h3>Demo Account</h3>
+    <p>Use these credentials to explore the platform:</p>
+
+    <div class="creds-box">
+      <p><strong>Email:</strong> tsajudges@neighborlink.com</p>
+      <p><strong>Password:</strong> TSATSA123!</p>
+    </div>
+  </div>
+
   <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="resource-form" [class.hide]="showSuccess">
     <div class="form-group">
       <label for="email">Email <span>(required)</span></label>
