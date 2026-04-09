@@ -53,19 +53,19 @@ export class Welcome implements OnInit {
       media: '/assets/onboarding/submit.mp4',
       type: 'video',
     },
-    {
-      title: 'TSA JUDGES',
-      text: [
-        '1. Go straight to Sign In',
-        '2. To enter the website, here are your credentials: ',
-        'Email: tsajudges@neighborlink.com ',
-        'Password: TSATSA123! ',
-        '3. You are free to use the Sign Up option to test functionality',
-        '4. Also please observe our resources tab with all the materials we utilized',
-      ],
-      media: '/assets/onboarding/judges.mp4',
-      type: 'video',
-    },
+    // {
+    //   title: 'TSA JUDGES',
+    //   text: [
+    //     '1. Go straight to Sign In',
+    //     '2. To enter the website, here are your credentials: ',
+    //     'Email: tsajudges@neighborlink.com ',
+    //     'Password: TSATSA123! ',
+    //     '3. You are free to use the Sign Up option to test functionality',
+    //     '4. Also please observe our resources tab with all the materials we utilized',
+    //   ],
+    //   media: '/assets/onboarding/judges.mp4',
+    //   type: 'video',
+    // },
   ];
 
   ngOnInit(): void {
