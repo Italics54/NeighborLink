@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CalendarEvent } from '../resources/utils';
+import { RoundRockUpcomingEvents, RoundRockTodaysEvents, RoundRockCalendarDays } from '../Round Rock/roundRockCalendar';
+import { GeorgetownUpcomingEvents, GeorgetownTodaysEvents, GeorgetownCalendarDays } from '../Georgetown/georgetownCalendar';
 
 @Component({
   selector: 'app-calendar',
@@ -9,6 +12,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './calendar.css'
 })
 export class Calendar {
+
+  upcomingEvents: CalendarEvent[] = this.currentUpcomingEvents();
+  todaysEvents: CalendarEvent[] = this.currentTodayEvents();
+  currentMonth: string = this.todaysEvents[0].date.split(" ")[0];
+  selectedDay: number | null = null;
+  selectedEvents: any[] = [];
+  days = this.currentCommunityDays();
+
+
   getDay(date: string): string {
     return new Date(date).getDate().toString();
   }
@@ -16,71 +28,23 @@ export class Calendar {
     return new Date(date).toLocaleString('default', { month: 'short' });
   }
 
+  currentUpcomingEvents(): CalendarEvent[] {
+    if (localStorage.getItem('Community') === 'roundrock') return RoundRockUpcomingEvents
+    if (localStorage.getItem('Community') === 'georgetown') return GeorgetownUpcomingEvents
+    return []
+  }
 
-  upcomingEvents = [
-    {
-      title: 'Community Potluck Dinner',
-      date: 'February 7, 2026',
-      time: '5:00 PM',
-      category: 'Gathering',
-      location: 'Harmony House Kitchen'
-    },
-    {
-      title: 'Coffee & Conversation',
-      date: 'February 16, 2026',
-      time: '9:00 AM',
-      category: 'Social',
-      location: 'Unity Grove Park'
-    },
-    {
-      title: 'Kids Art & Craft Hour',
-      date: 'February 19, 2026',
-      time: '3:00 PM',
-      category: 'Family',
-      location: 'Harmony Public Library'
-    },
-    {
-      title: 'Empty Plate Benefit Lunch',
-      date: 'February 25, 2026',
-      time: '3:00 PM',
-      category: 'Food Bank Event',
-      location: 'Hope Shelter'
-    }
-  ];
+  currentTodayEvents(): CalendarEvent[] {
+    if (localStorage.getItem('Community') === 'roundrock') return RoundRockTodaysEvents
+    if (localStorage.getItem('Community') === 'georgetown') return GeorgetownTodaysEvents
+    return []
+  }
 
-  todaysEvents = [
-    {
-      title: 'Volunteer Shift: Farmers Market',
-      date: 'February 14, 2026',
-      time: '8:00 AM',
-      category: 'Volunteering',
-      location: 'Downtown Square - Farmers Markets'
-    },
-    {
-      title: 'Library Reading Time',
-      date: 'February 10, 2026',
-      time: '10:30 AM',
-      category: 'Education',
-      location: 'Public Library - Children’s Corner'
-    },
-    {
-      title: 'Pickup Soccer',
-      date: 'February 21, 2026',
-      time: '2:00 PM',
-      category: 'Recreation',
-      location: 'Heritage Park - North Soccer Field'
-    },
-    {
-      title: 'Pickup Basketball',
-      date: 'February 3, 2026',
-      time: '6:00 PM',
-      category: 'Recreation',
-      location: 'Eastside Recreation Center- West Court'
-    }
-  ];
-
-  selectedDay: number | null = null;
-  selectedEvents: any[] = [];
+  currentCommunityDays() {
+    if (localStorage.getItem('Community') === 'roundrock') return RoundRockCalendarDays
+    if (localStorage.getItem('Community') === 'georgetown') return GeorgetownCalendarDays
+    return []
+  }
 
   openDay(day: number) {
     this.selectedDay = day;

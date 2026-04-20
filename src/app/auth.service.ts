@@ -15,6 +15,10 @@ export class AuthService {
   private username = new BehaviorSubject<string | null>(null);
   username$ = this.username.asObservable();
 
+  private userEmail = new BehaviorSubject<string | null>(null);
+  userEmail$ = this.userEmail.asObservable();
+
+
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
@@ -22,34 +26,33 @@ export class AuthService {
     }
   }
 
-  signup(data: {
-    name: string;
-    email: string;
-    password: string;
-    community: string;
-  }) {
+  signup(data: { name: string; email: string; password: string; community: string }) {
     return this.http.post<{ token: string; name: string }>(`${this.apiUrl}/signup`, data)
       .pipe(
         tap(res => {
-          localStorage.setItem('token', res.token);
+          if (res.token) localStorage.setItem('token', res.token);
           this.loggedIn.next(true);
+          localStorage.setItem('Community', data.community)
           this.username.next(res.name);
+          localStorage.setItem('userName', res.name)
+          localStorage.setItem('userEmail', data.email)
         })
       );
   }
 
 
   login(email: string, password: string) {
-    return this.http
-      .post<{ token: string; name: string }>(`${this.apiUrl}/login`, {
-        email,
-        password
-      })
+    return this.http.post<{ token: string; name: string, community: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap(res => {
           localStorage.setItem('token', res.token);
           this.loggedIn.next(true);
+          localStorage.setItem('Community', res.community)
           this.username.next(res.name);
+          this.userEmail.next(email)
+
+          localStorage.setItem('userName', res.name)
+          localStorage.setItem('userEmail', email)
         })
       );
   }
@@ -59,6 +62,19 @@ export class AuthService {
     localStorage.removeItem('token');
     this.loggedIn.next(false);
     this.username.next(null);
+    localStorage.removeItem('Community')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userEmail')
+  }
+
+  setCommunity(userId: string | null, community: string | null) {
+    return this.http.post<{ message: string; community: string }>(`${this.apiUrl}/setCommunity`, {userId, community})
+      .pipe(
+        tap(res => {
+          console.log(res.message)
+          localStorage.setItem('Community', res.community);
+        })
+      );
   }
 
   isLoggedIn(): boolean {

@@ -12,13 +12,19 @@
 <button class="comments-fab" (click)="openComments()">
   💬 Comments
 </button>
-
 <div class="comments-panel" [class.open]="isCommentsOpen">
   <div class="comments-header">
     <h3>Comments</h3>
     <button class="avatar" (click)="openComments()">X</button>
   </div>
-
+<div class="comments-input">
+  <input
+    type="text"
+    placeholder="Write a comment..."
+    [(ngModel)]="newComment"
+  />
+  <button (click)="addComment()">Post</button>
+</div>
   <div class="comments-body">
     <div class="comment" *ngFor="let comment of post?.comments">
       <b>{{ comment.user}}</b>

@@ -53,7 +53,7 @@
   </div>
 </main>
 
-<section class="featured">
+<section class="featured" *ngIf="!isLoggedIn">
   <span class="section-pill">WHAT WE OFFER</span>
   <h2>Featured Resources</h2>
   <p class="section-subtitle">
@@ -127,35 +127,47 @@
     </div>
   </div>
 </section>
+
+<section class="featured" *ngIf="isLoggedIn">
+  <span class="section-pill">FOR YOU</span>
+  <h2>Recommended Resources</h2>
+  <p class="section-subtitle">
+    In {{ selectedCommunity }}, here are some of the best resources available to you right now.
+  </p>
+
+  <div class="resource-grid">
+
+    <div 
+      class="resource-card"
+      *ngFor="let resource of featuredResources"
+      (click)="goToResources()"
+    >
+      <div class="icon">
+        {{ getIcon(resource.category) }}
+      </div>
+
+      <h3>{{ resource.title }}</h3>
+      <p>{{ resource.description }}</p>
+
+      <button class="learn-more-btn" (click)="goToResources(); $event.stopPropagation()">
+        View resources
+      </button>
+    </div>
+    </div>
+</section>
 <section class="events" *ngIf="isLoggedIn">
   <span class="section-pill">DAILY EVENTS FEED</span>
   <h2>What's Happening Today</h2>
-  <p class="date">Saturday, February 7, 2026</p>
+  <p class="date">{{ getDayFromDate(currentDay) }}, {{ currentDay }}</p>
 
   <div class="event-list">
-    <div class="event food">
-      <h4>Volunteer Shift: Farmers Market</h4>
-      <span>8:00 AM -- 2:00 PM Downtown Square</span>
+    @for (event of events; track event) {
+    <div class="event">
+      <h4>{{ event.title }}</h4>
+      <span>{{ event.time }} {{ event.location }}</span>
       <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
     </div>
-
-    <div class="event wellness">
-      <h4>Library Reading Time</h4>
-      <span>10:30 PM - 12:00 PM Harmony Public Library</span>
-      <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
-    </div>
-
-    <div class="event volunteer">
-      <h4>Pickup Soccer</h4>
-      <span>2:00 PM -- 6:30 PM Heritage Park</span>
-      <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
-    </div>
-
-    <div class="event education">
-      <h4>Pickup Basketball</h4>
-      <span>6:00 PM -- 8:00 PM Eastside Recreation Center</span>
-      <a routerLink="/calendar" routerLinkActive="active">View Details →</a>
-    </div>
+    }
   </div>
 
   <button class="calendar-btn" (click)="goToCalendar()">View Full Calendar</button>

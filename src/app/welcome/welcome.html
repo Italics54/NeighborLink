@@ -1,0 +1,47 @@
+<div class="intro-overlay" [class.show]="showModal">
+  <div class="intro-modal">
+
+    <div class="intro-pill">Quick Tour</div>
+
+    <h2 class="gradient-text">
+      {{ steps[currentStep].title }}
+    </h2>
+
+    <p class="intro-text" *ngFor="let line of steps[currentStep].text">
+      {{ line }}
+    </p>
+
+    <div class="demo-container">
+
+      <video #demoVideo [src]="steps[currentStep].media" autoplay muted loop playsinline class="demo-video">
+      </video>
+
+    </div>
+
+    <div class="dots">
+      <span *ngFor="let step of steps; let i = index" [class.active]="i === currentStep">
+      </span>
+    </div>
+
+    <div class="controls">
+
+      <button class="intro-secondary" *ngIf="currentStep > 0" (click)="prevStep()">
+        Back
+      </button>
+
+      <button class="intro-btn" (click)="nextStep()">
+
+        {{ currentStep === steps.length - 1
+        ? 'Start Exploring'
+        : 'Next' }}
+
+      </button>
+
+    </div>
+
+    <button class="skip-tour" (click)="closeModal()">
+      Skip Tour
+    </button>
+
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.tour-toggle {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #8b4de8;
+  color: white;
+
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 1000;
+}

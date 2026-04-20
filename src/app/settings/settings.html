@@ -4,21 +4,32 @@
   <p class="subtitle">
     Select the community you want to join. Some communities are not available yet.
   </p>
+  
+  <div class="user-box">
+    <div class="avatar">
+      {{ userName?.charAt(0) || 'U' }}
+    </div>
+    <div class="user-details">
+      <h3>{{ userName }}</h3>
+      <p>{{ userEmail }}</p>
+    </div>
+  </div>
 
-  <form class="resource-form" (ngSubmit)="saveCommunity($event)">
+  <form class="resource-form">
     <div class="form-group">
       <label>Select Community:</label>
       <div class="community-options">
         <button type="button" 
                 class="community-btn available" 
-                [class.selected]="selectedCommunity === 'Harmony Point'" 
-                (click)="selectCommunity('Harmony Point')">
-          Harmony Point
+                [class.selected]="selectedCommunity === 'roundrock'" 
+                (click)="selectCommunity('roundrock')">
+          Round Rock
         </button>
 
         <button type="button" 
-                class="community-btn locked" 
-                (click)="notifyComingSoon('Georgetown')">
+                class="community-btn available" 
+                [class.selected]="selectedCommunity === 'georgetown'" 
+                (click)="selectCommunity('georgetown')">
           Georgetown
         </button>
 
@@ -30,7 +41,7 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn" [disabled]="!selectedCommunity">
+    <button type="submit" class="submit-btn" [disabled]="currentCommunityValue === selectedCommunity" (click)="saveCommunity()">
       Save Changes
     </button>
   </form>

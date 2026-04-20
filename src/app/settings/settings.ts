@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.css']
 })
 export class Settings {
-  selectedCommunity: string | null = null;
+  selectedCommunity: string = '';
+  currentCommunityValue: string = '';
+  userName: string | null = localStorage.getItem('userName');
+  userEmail: string | null = localStorage.getItem('userEmail');
+
+  constructor(private authService: AuthService) {}
 
   selectCommunity(name: string) {
     this.selectedCommunity = name;
@@ -16,8 +22,19 @@ export class Settings {
     alert(`${name} community page is coming soon!`);
   }
 
-  saveCommunity(event: Event) {
-    event.preventDefault();
+  ngOnInit() {
+    this.currentCommunityValue = localStorage.getItem('Community') || '';
+    this.selectedCommunity = this.currentCommunityValue;
+  }
+
+  saveCommunity() {
     if (!this.selectedCommunity) return;
+    this.authService.setCommunity(this.userEmail, this.selectedCommunity).subscribe({
+      next: () => {
+        window.location.reload();
+      }
+    })
+    this.currentCommunityValue = this.selectedCommunity; 
+
   }
 }

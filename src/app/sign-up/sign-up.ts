@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   errorMsg = '';
   loading = false;
 
-  restrictedCommunities = ['georgetown', 'austin'];
+  restrictedCommunities = ['austin'];
   communityWarning = '';
 
   constructor(
@@ -99,7 +99,7 @@ export class SignUpComponent implements OnInit {
       },
       error: err => {
         this.loading = false;
-        this.errorMsg = err.error?.message || 'Signup failed';
+        this.errorMsg = err.error?.message || 'Signup failed! Check all fields.';
       }
     });
   }
